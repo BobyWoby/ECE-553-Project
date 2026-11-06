@@ -1,88 +1,162 @@
-# EECS 553 draft reproducibility handoff
+# Diffusion Forcing reproducibility study
 
-**Status: Minecraft 1x, 2x and 8x runs completed, measured and visually reviewed; 4x is next. R3 corrected derivation is complete. The remaining ablation and maze experiments are queued.** GPU access works (RTX 4090 Laptop, 16 GB). Completed inference: 2.170549 GPU-hours; metrics: 0.002542; setup diagnostics: 0.001145. Live queue status: `../setup/queue_status.json`. No training, email, account action, Overleaf access, submission or paper-branch checkout occurred.
+This study evaluates the released Diffusion Forcing checkpoints and works through
+Appendix A's ELBO derivation. The report source is in `sections/`; figures and
+measured tables are in `figures/` and `tables/`.
 
-## Contents and paste locations
+The checked-in results cover eight videos each at 1x, 2x and 8x the Minecraft
+training horizon. The remaining schedule comparisons and Maze2D evaluations are
+unfinished. Completed inference used 2.170549 GPU-hours; metric computation used
+0.002542 GPU-hours. These totals exclude unfinished runs. See
+`completion_audit.md` for the experiment checklist and `run_log.md` for the
+historical run log.
 
-- `sections/00_summary.tex`: summary with six required paragraphs (paste into the matching summary subsections if the template already provides headings).
-- `01_intro`, `02_scope`, `03_methodology`, `04_results`, `05_beyond`, `06_discussion`: bodies for the template's corresponding sections. `04_results` includes `sections/r3_proof.tex`.
-- `r3_proof.tex`: corrected intended Appendix A proof with explicit support/Jensen/cancellation/Gaussian steps. It identifies discrepancies in the printed v4 statement. It is longer than the main results text; move detailed proof to an appendix if the template budget requires it, retaining the audit summary in Results.
-- `refs.bib`: seven references. DF key/year retained from README (2025), despite NeurIPS 2024 conference context. MDF author name follows arXiv v2; venue requires human confirmation.
-- `code_changes.diff`: instrumentation against upstream main commit 475e0bcab87545e48b24b39fb46a81fe59d80594. Local repo ../diffusion-forcing, branch eecs553-draft. It additionally preserves video validity masks to exclude padded reference frames.
-- `figures/original_*`: original paper assets, not experimental outputs. No fake comparison plots or synthetic experimental CSVs are supplied.
-- `tables/paper_maze.csv`: original numbers only. `scripts/` produces empirical CSVs after real inference.
-- `pip_freeze.txt`: actual verified inference environment, with local-wheel origins. `requirements-lock.txt`: portable equivalent version pins. `environment.yml`: generated equivalent Conda specification, explicitly NOT a conda export. `host_pip_freeze.txt` and `environment_audit.txt` preserve the initial host audit. `analysis_pip_freeze.txt` describes the document-analysis environment.
-- `config_audit/`: composed and resolved intended configs, not configs from executed jobs.
-- `preview/`: local article compile check only. Never substitute this wrapper for the course template.
+## Report files
 
-Package assumptions: graphicx, amsmath, amssymb, booktabs, hyperref. No custom style, subcaption, spacing overrides, or document preamble occurs in section files. The preview wrapper alone uses article and geometry. Confirm one-page summary in the actual course template.
+- `sections/00_summary.tex`: reproducibility summary.
+- `sections/01_intro.tex` through `06_discussion.tex`: report sections.
+- `sections/r3_proof.tex`: expanded proof, included by the results section.
+- `refs.bib`: bibliography. The MDF venue still needs verification.
+- `figures/original_*` and `tables/paper_maze.csv`: material from the paper;
+  sources are listed in `figures/PROVENANCE.md`.
+- `config_audit/`: planned configurations. Executed configurations are in the
+  run records.
+- `code_changes.diff`: instrumentation changes against upstream commit
+  `475e0bcab87545e48b24b39fb46a81fe59d80594`.
+- `preview/`: local PDF previews. Use the course template for submission.
 
-## Re-run or resume experiments
+The section files need `graphicx`, `amsmath`, `amssymb`, `booktabs` and `hyperref`.
+They contain no document preamble or formatting overrides. Check the summary's
+page count after moving it into the course template.
 
-A verified Python 3.10.22 virtual environment is installed at ~/eecs553/.venv using uv because Conda is absent. Activate it with `source ~/eecs553/.venv/bin/activate`. The host Python 3.14 is unsuitable for the pinned torch stack. Run `python scripts/check_runtime.py` to verify imports, CUDA and checkpoint/data presence. Do not train. Avoid the paper branch. The authorized quickstart archive is already extracted at the repository root. The runner refuses absent video metadata to avoid triggering a full dataset download.
+## Environment
 
-The queue is already running; do not start duplicate jobs. For a later restart, inspect queue_status.json and the actual process first. From deliverables/, with the inference environment active:
+The experiments used Python 3.10.22, PyTorch 2.4.1 with CUDA 12.1,
+Torchvision 0.19.1, Lightning 2.1.4, and an RTX 4090 Laptop GPU with 16 GB VRAM.
+`requirements-inference.txt` contains compatible pins; `requirements-lock.txt`
+contains the full package list. `environment.yml` was assembled from package
+metadata. `pip_freeze.txt` records the installed environment, including local
+wheel paths. Runtime checks and their outputs are in `runtime_checks/`.
+
+On the original workstation:
 
 ```bash
-python scripts/run_experiments.py --kind video                    # print commands only
-python scripts/run_experiments.py --kind video --execute --skip-completed --override 'algorithm.metrics=[]'          # seed 0
-python scripts/measure_all.py  # GPU metrics plus timing records
-python scripts/make_figures.py
-# If seed-0 runs used less than ~1.5 GPU-h:
-python scripts/run_experiments.py --kind video --seeds 1 2 --execute --skip-completed --override 'algorithm.metrics=[]'
-# Recompute metrics/figures after repeats.
+source ~/eecs553/.venv/bin/activate
+cd ~/eecs553/deliverables
+python scripts/check_runtime.py
 ```
 
-The runner is sequential, logs full commands and timestamps, saves resolved configs, samples VRAM, and stops on error. It refuses to overwrite a run directory. Console output is saved rather than streamed with tee; inspect `runs/<name>/stdout.log` during execution. Runtime includes model loading and logging; supplementary FVD is disabled by the recorded configuration override; wall time/video is end-to-end validation time, not isolated denoising time. Use only a single GPU. Each record's gpu_hours is wall time / 3600. Sum `run.json` GPU-hours, including failures, into the report and update the status block. Resolved configs are also appended to the log. Review checkpoint load and data-count output before trusting a successful exit code.
+Install GNU Time for wall-time and memory records. The runner uses
+`~/eecs553/tools/bin/time` if `/usr/bin/time` is absent. Some setup helpers use
+workstation-specific paths; adjust them on another machine.
 
-On 8x OOM, retain the failed run and rerun under a new name with batch size 4; edit generated flags explicitly and document the deviation. For fairness keep the same batch size for matched schedule comparisons or state the difference. Videos across different multipliers can correspond to different dataset clips; seeds do not fix that confound. Repeats at the same multiplier reuse deterministic dataset order.
+Download the released checkpoints and Minecraft mini dataset as described in the
+upstream README. Their recorded hashes are in `checkpoints.json`. The runner
+requires local video metadata so that a missing mini dataset does not trigger a
+full dataset download.
 
-Metrics use actual T,B,C,H,W tensors, clamp [0,1] and record raw ranges. Predictions are measured through the requested horizon even after reference data ends; reference masks exclude padded transitions. Frame index is after frame skipping. Initial summaries omit context-only transitions. First-window transitions end at t<10; last-window transitions end at t>=T-10. At 1x both use generated transitions from t=context onward. Per-frame std and one-seed error bars are sample std across videos; with repeats, plot error bars are sample std of seed means. Do not interpret either as a confidence interval. The GT summary band uses only the longest autoregressive run at seed zero and describes variation in video means; duplicated references across seeds and schedules are excluded. Per-run GT curves preserve the actual per-frame band. LPIPS may download its public AlexNet weights when first instantiated.
+Maze2D uses MuJoCo 2.1.0, mujoco-py 2.1.2.14 and D4RL 1.1. Source
+`scripts/maze_env.sh` before running the planner. Local GLEW headers and compiler
+compatibility flags were needed on this host. Both medium and large environments
+passed reset/step and dataset-loading checks. Dataset hashes are in
+`runtime_checks/maze_data.json`.
 
-Maze dependencies and datasets have passed checks. For a later restart:
+## Run experiments
+
+Check `../setup/queue_status.json` and running processes before restarting the
+queue. From this directory, with the inference environment active:
 
 ```bash
+# Show video commands.
+python scripts/run_experiments.py --kind video
+
+# Run seed zero, then compute metrics and figures.
+python scripts/run_experiments.py --kind video --execute --skip-completed --override 'algorithm.metrics=[]'
+python scripts/measure_all.py
+python scripts/make_figures.py
+
+# Run maze evaluations.
+source scripts/maze_env.sh
 python scripts/run_experiments.py --kind maze --execute
 python scripts/maze_table.py ../runs --out tables
 python scripts/make_figures.py
 ```
 
-The maze runner includes the five-scale sweep for each environment with defaults first per environment. Inspect default runs before proceeding. Seeds 1/2 are optional only if time permits. Environment seeds remain upstream's hard-coded zero. Episode std must not be described as seed std; non-reaching first_reach values are censored and success_fraction is exported. Confirm paper normalization and single-goal versus random-goal setting before numerical comparisons.
+The runner uses one GPU, saves commands and resolved configurations, samples
+VRAM, and stops on failure. It refuses to overwrite existing run directories.
+Console output is in `../runs/<name>/stdout.log`. Wall time includes model loading
+and logging. Sampled device-wide VRAM can miss brief allocation peaks.
+Supplementary FVD is disabled with `algorithm.metrics=[]`.
 
-## Findings to preserve
+If a video run runs out of memory, keep its record and rerun with batch size four
+under a new name. Use matching batch sizes for schedule comparisons, or report
+the difference. Optional video seeds 1 and 2 were budgeted only if the eight
+seed-zero runs took less than 1.5 GPU-hours; completed runs already exceed that
+threshold.
 
-- Diffuser* means its PD-controller variant ignoring generated actions.
-- Appendix A Claim 3's expected log ratio has the wrong printed KL sign. A.13 counts indicators. General distribution weights are cumulative probabilities. R3 explicitly derives corrected forms instead of endorsing the printed errors.
-- Main uses temporal attention/sliding windows, not the original recurrent latent. Planning is non-causal and lacks MCG/MCTG.
-- A dummy nonempty wandb entity is needed even offline. No account login is necessary.
-- The code uses /256 pixel scaling, so original data maxima are below 1 before interpolation. Do not infer normalization from an old log_video docstring.
-- Author email status is unverified: the draft intentionally does not claim an email was sent.
+The queue waits for `runs/<name>/visual_review.json` after each run. Inspect the
+filmstrips or maze plans for clipping, padding, freezing and intensity collapse
+before recording approval. A queue waiting at this step does not need restarting.
 
-CUDA computation, repository imports, local video encoding and synthetic LPIPS/padding checks pass. Scripts and instrumentation remain unverified with real checkpoints. Syntax/configuration and proof algebra checks are recorded separately from experimental validation. See human_checklist.md for the submission path and remaining blockers.
+To export completed run records and resource totals:
 
-- Config composition revealed upstream dataset.metadata references absent dataset.name. Video commands explicitly override dataset.metadata=data/minecraft/metadata.json; no model or sampler change. The first audit failed on this interpolation; audit rerun after correction.
+```bash
+python scripts/collect_run_records.py
+```
 
-## Local verification and original-asset regeneration
+This writes `run_records/`, `tables/run_ledger.csv`, `tables/run_ledger.md` and
+`tables/gpu_totals.json`. Totals include failed attempts; setup diagnostics and
+metric computation are listed separately. Unfinished jobs are excluded.
 
-The summary compiles to one page (352 whitespace-delimited words including TeX markup) at 10pt and one-inch margins. The full eight-page local preview includes a separate original-asset rendering check. No final overflow or unresolved-reference warnings remain. These page counts are not guarantees for the course template.
+## Metrics and comparisons
 
-Fetch the arXiv source into ../df_src.tar.gz and extract to ../df_src/ to regenerate original figures; use the source URL in figures/PROVENANCE.md. No checkpoints or datasets are bundled. To repeat the preview, run scripts/preview.py, copy its two wrappers from preview/ temporarily into deliverables/, then run `tectonic summary_check.tex --outdir preview --keep-logs` and similarly for draft_check.tex. Remove the two temporary root wrappers afterward. PDF exports are preview artifacts, not the course-template submission.
+Video metrics use T,B,C,H,W tensors clamped to [0,1]; raw ranges are recorded
+separately. Predictions cover the requested horizon, while ground-truth validity
+masks exclude padded transitions. Frame indices follow frame skipping.
+Context-only transitions are excluded. The early window ends before frame ten;
+the late window contains transitions ending in the last ten frames. At 1x these
+windows both cover the generated transitions.
 
-## Verified inference setup
+A single seed's standard deviations describe variation across videos. With
+repeats, error bars describe variation of seed means. Neither is a confidence
+interval. The ground-truth summary band uses the longest autoregressive run at
+seed zero to avoid counting duplicate references. Horizon multipliers change
+clip enumeration, so batches at different horizons are not paired. LPIPS may
+download AlexNet weights on first use.
 
-Activate `source ~/eecs553/.venv/bin/activate`. Runtime check logs and synthetic smoke-test scripts are in runtime_checks/. No synthetic results were placed in tables/ or runs/. `uv pip check` passes. Install-compatible pins are recorded in requirements-inference.txt; the complete portable package list is requirements-lock.txt. The environment.yml file is an equivalent specification assembled from package metadata because Conda was unavailable.
+Maze tables record episode reward, reward-if-stay, first-reach steps and success
+fraction. Failed episodes have censored first-reach times. Repeated model seeds
+reuse the upstream environment seed of zero. `maze_results.csv` and
+`guidance_sweep.csv` contain per-run episode statistics; `maze_seed_summary.csv`
+aggregates run means when repeats exist. Verify normalization and goal selection
+before comparing these metrics with the paper's Table 1.
 
-The runner falls back to ~/eecs553/tools/bin/time if /usr/bin/time is absent. GNU Time 1.9 was built there locally. On another host, install GNU Time or provide that path. Diagnostic VRAM samples missed the brief allocation peaks and must not be used to size experimental batches. Actual GPU is a 16 GB laptop 4090; use measured OOM behavior to decide whether batches must be reduced.
+The released video model uses temporal attention and sliding windows; the paper
+uses a recurrent latent state. The planner is non-causal and omits MCG/MCTG.
+Diffuser* refers to the PD-controller variant that ignores generated actions.
+The data loader scales pixels by 256. Offline W&B logging still requires a
+nonempty entity; the commands use `offline-local`. They also set
+`dataset.metadata=data/minecraft/metadata.json` to resolve an upstream reference
+to the missing `dataset.name` field.
 
-## Legacy Maze2D runtime
-Source `scripts/maze_env.sh` before maze commands. MuJoCo 2.1.0, mujoco-py 2.1.2.14 and D4RL 1.1 pass medium/large reset and step checks through SB3 DummyVecEnv. Local GLEW headers and GCC compatibility flags are required on this host; see `runtime_checks/check_maze.log`. Flow/CARLA are optional and absent. No planner checkpoint has been evaluated.
+The proof in `sections/r3_proof.tex` corrects the expected-log-ratio KL sign and
+noise-level weights in Appendix A. It distinguishes the printed statements from
+the derived result.
 
-Maze analysis writes `maze_results.csv` (episode SD for every run), `guidance_sweep.csv` (same per-run records) and `maze_seed_summary.csv` (mean of seed means, SD across seed means if repeated; otherwise episode SD). Guidance plots use the latter, displaying all three metrics. These SDs are descriptive, not confidence intervals; the upstream fixed environment seed means repeated model seeds reuse environment initializations.
+## Build the report
 
-Both Maze2D sparse-v1 HDF5 datasets are now cached in `../diffusion-forcing/data/maze2d/`, fetched from the original Berkeley host using HTTPS. Repository loading and sample shapes pass; SHA256 values are in `runtime_checks/maze_data.json`. Datasets are excluded from the handoff archive.
+Run `python scripts/preview.py` to generate the preview wrappers. Copy the two
+wrappers from `preview/` into this directory temporarily, then compile each:
 
-Run `python scripts/collect_run_records.py` to export completed-run commands, logs, raw/resolved configs and memory samples into `run_records/`, and produce `tables/run_ledger.csv`, `run_ledger.md` and `gpu_totals.json`. Totals include failed inference attempts and separately identify metric postprocessing and setup diagnostics. Live jobs are excluded until their completion records exist.
+```bash
+tectonic summary_check.tex --outdir preview --keep-logs
+tectonic draft_check.tex --outdir preview --keep-logs
+```
 
-The queue pauses after each completed run until the agent has inspected its filmstrip or maze plans and written `runs/<name>/visual_review.json`. This is an agent review step, not a request for human permission. The coordinator may be waiting normally at that gate; inspect its live process and queue status before restarting anything.
+Remove the temporary wrappers afterward. The local summary was checked at 10 pt
+with one-inch margins; the course template may paginate differently.
 
-For the standalone measured 8x temporal-change and pixel-statistics figure, run `python scripts/r1_plot.py` after metric extraction. This is independent of the pending full ablation.
+To regenerate original-paper figures, download the arXiv source URL listed in
+`figures/PROVENANCE.md` to `../df_src.tar.gz` and extract it into `../df_src/`.
+For the standalone 8x temporal-change figure, run `python scripts/r1_plot.py`
+after metric extraction. Submission tasks are listed in `human_checklist.md`.

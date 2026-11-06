@@ -1,6 +1,6 @@
-# EECS 553 — Diffusion Forcing project
+# EECS 553: Diffusion Forcing
 
-Project reports, experiment scripts, configurations, measured results, and selected figures.
+Reports, experiment scripts and results for our Diffusion Forcing reproducibility study.
 See [deliverables/README.md](deliverables/README.md) for environment setup,
 experiment commands, validation status, and remaining work.
 
@@ -20,9 +20,8 @@ Its code history is preserved on this repository's `diffusion-forcing` branch.
 - `runs/` and `analysis_runs/`: lightweight run records, configs, logs, and measurements.
 - `setup/`: environment checks and dependency download helpers.
 
-Datasets, checkpoints, tensor dumps, package wheels, downloaded paper source,
-local tool binaries, and W&B caches are intentionally excluded. Download or
-regenerate these using the instructions in `deliverables/README.md`.
+Datasets, checkpoints and local build files are excluded from Git. See
+`deliverables/README.md` for download and setup instructions.
 Some setup helpers contain paths for the original workstation; adjust those
 paths for your environment. Recorded results and logs are snapshots and may
 include incomplete runs; consult the validation status before using them.

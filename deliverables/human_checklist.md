@@ -1,23 +1,38 @@
-# Human checklist — draft experiments in progress
+# Report checklist
 
-- [x] User authorized the public Drive download; quickstart archive downloaded and extracted, with checkpoint SHA256 values recorded in checkpoints.json.
-- [x] GPU device access restored after execution permissions changed; no driver repair needed. Actual GPU is RTX 4090 Laptop, 16 GB. Confirm this hardware differs intentionally from the desktop 24 GB assumption.
-- [x] Python 3.10 environment installed at ~/eecs553/.venv; CUDA computation, repository imports, LPIPS/padding and offline encoding verified.
-- [x] Legacy Maze2D dependencies installed; medium and large pass reset/step checks through the vector interface. Source scripts/maze_env.sh for maze commands.
-- [x] Both Maze2D sparse datasets downloaded from Berkeley over HTTPS and loaded by the repository; hashes recorded.
-- [ ] Review completed R1 1x/8x and horizon/schedule ablation outputs when the queue finishes. The 1x, 2x and 8x runs have completed and been reviewed by the agent; 4x and remaining conditions are running/queued.
-- [ ] Email Boyuan Chen (boyuanc@mit.edu) tonight if not already done: ask about robot dataset/code availability, teacher-forcing baseline configuration, Table 1 protocol/normalization and MCG. Consider adding the Appendix A sign/indexing questions. Confirm sending before inserting “We emailed the authors and have not heard back yet.” Update if a reply arrives.
-- [ ] Copy the course Overleaf template, share with all team members, and give Prof. Fessler view access.
-- [ ] Rename the project to include “eecs553” and [TEAM NUMBER].
-- [ ] Change report title and [AUTHOR NAMES] in the template.
-- [ ] Preserve all template formatting. Paste section bodies under matching headings; upload figures/ and refs.bib; check package assumptions in README.
-- [ ] Re-read Canvas/Google Drive task descriptions, reviewer guidelines and the F22 example; check the draft against them.
-- [ ] Verify the Reproducibility Summary fits one page in the real template, with a sentence in every required subsection.
-- [ ] Verify the original-versus-ours figures and captions in the actual template. The R1 comparison is already generated; remaining experimental figures will be added as runs finish.
-- [ ] Create the public fork or instrumentation repository and replace [FORK URL]. No account repository was created by the agent.
-- [ ] Resolve human-owned placeholders: [FORK URL], [TEAM NUMBER], [AUTHOR NAMES], author-contact confirmation, and any explicitly reported experimental blockers. The agent is responsible for filling pending ablation/planning measurements and resource totals as its queue completes.
-- [ ] Review R3 corrections against the original Appendix A, especially the negative KL and cumulative weights. This is a corrected intended theorem, not literal verification of the printed theorem.
-- [ ] Confirm MDF bibliography: arXiv v2 lists Huaidian Hou, whereas the prompt says Daniel Hou; verify preferred name and ICRA proceedings metadata.
-- [ ] Review every generated video and plan image. Check clipping, padding, freezing and intensity collapse; do not rely on flat temporal metrics alone.
-- [x] Maze setup is operational before the cutoff; no further human installation action is currently required.
-- [ ] Export the real Overleaf PDF and submit by 2026-11-07 end of day. The local preview is not the submission template.
+## Experiments
+
+- [x] Download checkpoints and record SHA256 hashes in `checkpoints.json`.
+- [x] Verify Python 3.10, CUDA, repository imports, LPIPS, padding and video encoding.
+- [x] Verify both Maze2D environments and datasets; record dataset hashes.
+- [x] Review the completed Minecraft 1x, 2x and 8x outputs.
+- [ ] Finish and review the remaining horizon/schedule runs and maze evaluations.
+- [ ] Update figures, tables and resource totals from completed run records.
+- [ ] Check every video and plan for clipping, padding, freezing and intensity collapse.
+- [ ] Review the Appendix A corrections, especially the KL sign, cumulative weights
+  and assumptions for subsequences.
+
+The experiments use a 16 GB RTX 4090 Laptop GPU. Record this distinction from a
+24 GB desktop 4090 in the report.
+
+## Report and submission
+
+- [x] Publish code and instrumentation at
+  https://github.com/BobyWoby/ECE-553-Project.
+- [ ] Contact Boyuan Chen (boyuanc@mit.edu) about robot data/code, the
+  teacher-forcing baseline, Table 1 normalization and MCG. Include the Appendix A
+  questions if useful. Record the date and any reply; correspondence is currently
+  unconfirmed.
+- [ ] Copy the course Overleaf template, share with the team and give
+  Prof. Fessler view access.
+- [ ] Add `eecs553` and the team number to the project name; fill in the report
+  title and author names.
+- [ ] Move section bodies, figures and `refs.bib` into the template and check
+  package requirements in `README.md`.
+- [ ] Check the draft against the assignment, reviewer guidelines and F22 example.
+- [ ] Check that the six-part reproducibility summary fits one page.
+- [ ] Check original/ours figure labels, captions and remaining placeholders.
+- [ ] Verify the MDF bibliography: arXiv v2 lists Huaidian Hou; confirm the
+  preferred name and ICRA proceedings metadata.
+- [ ] Compile and review the final PDF in the course template.
+- [ ] Submit by the end of 2026-11-07.

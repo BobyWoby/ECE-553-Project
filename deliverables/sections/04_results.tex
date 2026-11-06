@@ -16,7 +16,7 @@ This experiment reproduces only DF's portion of the comparison: the released qui
 \caption{Ours: eight-times autoregressive rollout, with matched ground-truth temporal-change reference. Lines average eight videos; shaded regions in the LPIPS and MSE panels are one standard deviation across videos, not confidence intervals. Dashed vertical lines mark ten-frame training-horizon boundaries. Pixel statistics use clamped $[0,1]$ values.}
 \end{figure}
 \subsection{R2: planning audit, experiments pending}
-The release explicitly changes the planning setting and omits MCG (called MCTG in the README). Exact Table 1 reproduction is therefore not available from the permitted \texttt{main} workflow. The asterisk on Diffuser denotes a hand-crafted PD controller that ignores generated actions, not merely a matched evaluation setting. Paper single-task means are shown next to explicitly missing released-code results.
+The release explicitly changes the planning setting and omits MCG (called MCTG in the README). Exact Table 1 reproduction is therefore not available from the released \texttt{main} workflow. The asterisk on Diffuser denotes a hand-crafted PD controller that ignores generated actions, not merely a matched evaluation setting. The table lists the paper's single-task means; our planning results are pending.
 \begin{table}[ht]
 \centering
 \begin{tabular}{lrrlll}
@@ -42,6 +42,6 @@ Equation (A.13) counts uniform noise levels. & Explicit counting yields $1/(K+1)
 Theorem A.3 uses $jP_t(j\mid k_{<t})$. & General weights are $\Pr(k_t<j\mid k_{<t})$; the forms coincide for uniform levels, but not generally.\\
 \bottomrule
 \end{tabular}
-\caption{Left: original paper statements, paraphrased from Appendix A. Right: our derivation and corrections. This analytical comparison is completed; it complements the experimental R1 result.}
+\caption{Left: original paper statements, paraphrased from Appendix A. Right: our derivation and corrections. The derivation follows below.}
 \end{table}
 \input{sections/r3_proof}

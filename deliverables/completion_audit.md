@@ -1,21 +1,21 @@
-# Completion audit (live experiments)
+# Experiment status
 
 - Complete: GPU access, Python environment, checkpoint download and hashes, mini dataset, both Maze2D environments and datasets, instrumentation, corrected R3 derivation.
 - Complete initial experiment: Minecraft 1x, 2x and 8x, seed 0, eight videos each. Finite tensors, first two filmstrips visually inspected, MSE/LPIPS CSVs computed.
 - Running: Minecraft 4x.
 - Queued: remaining video schedule/horizon runs; conditional repeats; both default mazes and guidance sweeps; conditional maze baseline repeats; metrics and figures.
-- Still required: inspect remaining outputs, integrate all measured results, final captions/tables and report consistency review, final archive refresh.
-- Human tasks remain in human_checklist.md. No training or submission was performed.
+- Still required: inspect remaining outputs, integrate all measured results, final captions/tables and report consistency review, final report export.
+- Submission tasks are listed in `human_checklist.md`.
 
 R1 now supplies limited long-horizon evidence with original-versus-ours figures; the beyond-paper requirement remains unfinished. Queue status is ../setup/queue_status.json and logs are ../setup/experiment-queue.log.
 
-## Requirement-to-evidence map for the final audit
+## Remaining checks
 
-This is an audit plan, not a claim that pending requirements are complete. Recheck actual files and rendered outputs when the queue finishes.
+Check the files below after the remaining runs finish.
 
 | Requirement | Evidence to inspect | Current state |
 |---|---|---|
-| Main-only, inference-only code and exact upstream revision | Repo branch/commit, code_changes.diff, executed commands in run_records | Main-derived local branch; no training or paper-branch checkout |
+| Main-only, inference-only code and exact upstream revision | Repo branch/commit, code_changes.diff, executed commands in run_records | Main-derived code published on the diffusion-forcing branch; no training |
 | Actual environment and checkpoint identity | environment_audit.txt, pip_freeze.txt, requirements-lock.txt, environment.yml, checkpoints.json | Recorded; virtualenv/16 GB Laptop GPU deviations explicit |
 | R1 autoregressive 1/2/4/8x, eight videos | run_records/mc_ar_*; corresponding saved tensors in ../runs | 1x, 2x, 8x complete; 4x live |
 | Full-sequence chunk-two 1/2/4/8x | run_records/mc_fs2_*; corresponding saved tensors | Queued |
@@ -32,7 +32,7 @@ This is an audit plan, not a claim that pending requirements are complete. Reche
 | All seven section bodies, bibliography, no template formatting changes | sections/*.tex, refs.bib, README package assumptions | Drafts exist; pending results must be integrated |
 | Runtime, full commands/seeds/configs/VRAM and total GPU-hours | Main run_log table, run_records, tables/run_ledger.csv, gpu_totals.json | Complete for terminal runs; live jobs excluded |
 | Reproducible figure scripts, local compile and visual QA | scripts/, preview logs/renders, per-run visual_review.json | Completed results reviewed; remaining outputs and final compile pending |
-| Human-only actions and unresolved human placeholders | human_checklist.md; scan final section text for TBD/FORK/TEAM/AUTHOR | Checklist exists; agent will not email, fork, access Overleaf or submit |
+| Submission details | human_checklist.md; scan section text for TBD/TEAM/AUTHOR | Team details, author correspondence and course-template review pending |
 | Final archive without datasets/checkpoints | ../deliverables_<date>.tar.gz listing and extracted-file consistency | Interim archive exists; final refresh and audit pending |
 
-Final sign-off requires R1, R3 and the beyond-paper result at minimum, plus R2/guidance if their released workflow succeeds. No result is credited solely because its configuration or script exists.
+The report still needs the schedule ablation and, if the released workflow succeeds, the maze evaluations. Update the status from completed runs and reviewed outputs.

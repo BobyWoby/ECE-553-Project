@@ -9,4 +9,4 @@ Source: https://arxiv.org/e-print/2407.01392 (v4), fetched 2026-11-05. Archive/P
 | original_maze_fig15_medium | figures/appendix_vis/df_medium_close.png | Figure 15 upper |
 | original_maze_fig15_large | figures/appendix_vis/df_large_close.png | Figure 15 lower |
 
-`make_figures.py --originals-only` wraps these raster originals into PDFs and 300-dpi preview PNGs. They are not new measurements or vector reconstructions. Empirical plots, when generated from real CSVs, use vector PDF output. No source image is labeled as ours.
+`make_figures.py --originals-only` wraps these raster originals into PDFs and 300-dpi preview PNGs. These exports retain the original raster images. Plots computed from experiment CSVs use vector PDF output.

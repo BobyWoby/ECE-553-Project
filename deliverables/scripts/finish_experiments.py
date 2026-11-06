@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Continue the authorized inference queue. Stop on errors; never train."""
+"""Run the remaining inference experiments, stopping on errors."""
 import argparse,datetime,json,os,subprocess,sys,time,traceback
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--wait-pid',type=int,required=True);p.add_argument('--wait-run',default='mc_ar_8x_s0');p.add_argument('--unattended',action='store_true');a=p.parse_args()
@@ -45,9 +45,9 @@ def validate_record(r):
   data=json.loads((folder/'maze_metrics.json').read_text())
   if not all(np.isfinite(data[k]).all() for k in ['episode_reward','episode_reward_if_stay','first_reach']):raise ValueError('Nonfinite maze output')
  if a.unattended:
-  note('completed '+r['name']+'; automated output checks pass; visual review deferred per user request for unattended execution')
+  note('completed '+r['name']+'; automated output checks pass; visual review deferred (--unattended)')
   return
- note('completed '+r['name']+'; automated output checks pass; waiting for agent visual review')
+ note('completed '+r['name']+'; automated output checks pass; waiting for visual review')
  while not (folder/'visual_review.json').exists():time.sleep(5)
  review=json.loads((folder/'visual_review.json').read_text())
  if not review.get('approved_to_continue'):raise RuntimeError('Visual review did not approve continuation')
