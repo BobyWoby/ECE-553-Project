@@ -1,0 +1,12 @@
+{
+  "name": "mc_fs2_8x_s0",
+  "command": "/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_8x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'",
+  "seed": 0,
+  "start": "2026-11-06T00:45:27.736754-05:00",
+  "end": "2026-11-06T01:37:08.010250-05:00",
+  "wall_seconds": 3099.4076689130015,
+  "gpu_hours": 0.860946574698056,
+  "peak_sampled_vram_mib": 15257.0,
+  "status": "ok",
+  "exit_code": 0
+}

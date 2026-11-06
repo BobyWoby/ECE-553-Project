@@ -1,17 +1,14 @@
-**PAUSED FOR TRAVEL:** Seven video conditions completed. Final FS2 8x was interrupted at user request; its logs are preserved and it must restart. Run `~/eecs553/.venv/bin/python ~/eecs553/deliverables/scripts/resume_queue.py` to continue the unattended queue. Visual review/report integration remain pending.
-
 # Diffusion Forcing reproducibility study
 
 This study evaluates the released Diffusion Forcing checkpoints and works through
 Appendix A's ELBO derivation. The report source is in `sections/`; figures and
 measured tables are in `figures/` and `tables/`.
 
-The checked-in results cover eight videos each at 1x, 2x and 8x the Minecraft
-training horizon. The remaining schedule comparisons and Maze2D evaluations are
-unfinished. Completed inference used 2.170549 GPU-hours; metric computation used
-0.002542 GPU-hours. These totals exclude unfinished runs. See
-`completion_audit.md` for the experiment checklist and `run_log.md` for the
-historical run log.
+The completed results cover eight Minecraft conditions (two schedules at 1x, 2x, 4x and 8x; eight videos each), and 14 Maze2D runs (1,792 episodes). Both default maze conditions have three model seeds; other guidance scales have one. Inference attempts used 4.921946 wall-GPU-hours including an interrupted attempt; metrics used 0.003671, and setup diagnostics 0.001145. No training was performed.
+
+The rebuilt local preview has 16 pages and the six-part summary fits one page.
+
+Sampled frames from every video and all saved maze plan/interaction images were visually reviewed. Geometry artifacts and incomplete paths are documented in `visual_review.md`; this is not exhaustive temporal or all-episode verification. All measured results are integrated into the report. Preview PDFs use a local wrapper; course-template transfer, author details and final submission remain team tasks. See `completion_audit.md` and `human_checklist.md`.
 
 ## Report files
 
@@ -96,7 +93,7 @@ the difference. Optional video seeds 1 and 2 were budgeted only if the eight
 seed-zero runs took less than 1.5 GPU-hours; completed runs already exceed that
 threshold.
 
-The queue waits for `runs/<name>/visual_review.json` after each run. Inspect the
+The interactive queue waits for `runs/<name>/visual_review.json` after each run; unattended execution defers that review. Completed runs now have sampled-review records. Inspect the
 filmstrips or maze plans for clipping, padding, freezing and intensity collapse
 before recording approval. A queue waiting at this step does not need restarting.
 

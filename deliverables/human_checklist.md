@@ -6,9 +6,9 @@
 - [x] Verify Python 3.10, CUDA, repository imports, LPIPS, padding and video encoding.
 - [x] Verify both Maze2D environments and datasets; record dataset hashes.
 - [x] Review the completed Minecraft 1x, 2x and 8x outputs.
-- [ ] Finish and review the remaining horizon/schedule runs and maze evaluations.
-- [ ] Update figures, tables and resource totals from completed run records.
-- [ ] Check every video and plan for clipping, padding, freezing and intensity collapse.
+- [x] Finish inference and sampled review of all horizon/schedule conditions and maze runs.
+- [x] Update figures, tables and resource totals from completed run records.
+- [x] Inspect sampled frames of every video and every saved maze plot; document artifacts and coverage limits in `visual_review.md`.
 - [ ] Review the Appendix A corrections, especially the KL sign, cumulative weights
   and assumptions for subsequences.
 
@@ -30,8 +30,8 @@ The experiments use a 16 GB RTX 4090 Laptop GPU. Record this distinction from a
 - [ ] Move section bodies, figures and `refs.bib` into the template and check
   package requirements in `README.md`.
 - [ ] Check the draft against the assignment, reviewer guidelines and F22 example.
-- [ ] Check that the six-part reproducibility summary fits one page.
-- [ ] Check original/ours figure labels, captions and remaining placeholders.
+- [ ] Check that the six-part reproducibility summary fits one page in the course template (local preview checked separately).
+- [x] Integrate measured results and original/ours captions; remove experimental placeholders.
 - [ ] Verify the MDF bibliography: arXiv v2 lists Huaidian Hou; confirm the
   preferred name and ICRA proceedings metadata.
 - [ ] Compile and review the final PDF in the course template.

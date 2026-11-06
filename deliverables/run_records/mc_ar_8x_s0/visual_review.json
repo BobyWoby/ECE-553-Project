@@ -1,9 +1,17 @@
 {
   "approved_to_continue": true,
-  "time": "2026-11-05T22:29:13.683932-05:00",
+  "time": "2026-11-06T12:33:26.623529-05:00",
   "reviewer": "agent",
-  "file": "deliverables/figures/frames/mc_ar_8x_s0.png",
-  "observations": "Viewed prediction and ground-truth filmstrips for first two videos at context and distributed frames through t=79. Terrain, trees and sky remain recognizable, with scene changes across the rollout. No gross saturation or complete freezing visible in these selected frames. This qualitative check does not establish fidelity or rule out short temporal artifacts.",
-  "additional_review": "Inspected CPU-generated all-video contact sheet at frames 0, 2, 40, 78 and 79 for all eight samples. Scenes remain recognizable and late adjacent frames change; textures can be soft and this sparse check does not certify all temporal transitions. All eight late-window LPIPS means are nonzero (0.0723 to 0.2266).",
-  "additional_file": "deliverables/figures/frames/mc_ar_8x_s0_all_videos.png"
+  "scope": "sampled visual review; not exhaustive frame-by-frame or all-episode verification",
+  "file": "deliverables/figures/review/mc_ar_8x_s0.png",
+  "observations": "Inspected all eight videos at context, early, quarter, middle, three-quarter and final frames (deduplicated for short horizons). Recognizable terrain, trees and sky persist with scene changes. No obvious blank padding, global saturation or complete freezing in inspected frames. Geometry distortions, soft textures and object/foliage discontinuities are visible; temporal or semantic fidelity is not certified.",
+  "previous_review": {
+    "approved_to_continue": true,
+    "time": "2026-11-05T22:29:13.683932-05:00",
+    "reviewer": "agent",
+    "file": "deliverables/figures/frames/mc_ar_8x_s0.png",
+    "observations": "Viewed prediction and ground-truth filmstrips for first two videos at context and distributed frames through t=79. Terrain, trees and sky remain recognizable, with scene changes across the rollout. No gross saturation or complete freezing visible in these selected frames. This qualitative check does not establish fidelity or rule out short temporal artifacts.",
+    "additional_review": "Inspected CPU-generated all-video contact sheet at frames 0, 2, 40, 78 and 79 for all eight samples. Scenes remain recognizable and late adjacent frames change; textures can be soft and this sparse check does not certify all temporal transitions. All eight late-window LPIPS means are nonzero (0.0723 to 0.2266).",
+    "additional_file": "deliverables/figures/frames/mc_ar_8x_s0_all_videos.png"
+  }
 }

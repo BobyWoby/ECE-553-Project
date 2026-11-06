@@ -1,5 +1,7 @@
-\subsection{Sampling-scheme ablation (in progress)}
-The proposed extension measures temporal change across horizon multipliers $1,2,4,8$ for autoregressive stabilization and full-sequence chunk-two sampling. The planned outputs are LPIPS and MSE curves with horizon boundaries, late-window means against horizon multiplier, and wall time per video. Ground truth supplies a reference distribution restricted to valid frames. The completed one-, two- and eight-times autoregressive runs supply initial measurements (Section 4), but the full horizon/schedule comparison remains \textbf{[TBD]}. Eight videos per run, even with three seeds, would provide limited evidence, and horizon-dependent clip selection is a potential confound. A schedule difference should not be interpreted as robust unless it exceeds variation across seeds and clips. The guidance-scale sweep is queued after video evaluation.
+\subsection{Sampling-scheme ablation}
+We evaluated two sampling schedules at 10, 20, 40 and 80 frames: autoregressive stabilization and full-sequence chunk-two sampling. Each condition contains eight videos at seed zero. Late-window LPIPS for autoregressive sampling is 0.1433, 0.1248, 0.1157 and 0.1366; for full-sequence sampling it is 0.1641, 0.1337, 0.1655 and 0.1421. Neither schedule shows a monotonic increase across horizons. At $8\times$, full-sequence MSE is lower (0.01304 versus 0.01780), while LPIPS is slightly higher (0.1421 versus 0.1366). These metrics measure temporal change, so smaller values alone do not imply better generation. At $4\times$ both changes are larger for full-sequence sampling. There is no consistent quality winner in this small sample.
+
+Full-sequence sampling takes 29.8--387.4 seconds per video versus 55.0--766.3 for autoregressive sampling, a measured speedup of 1.85--1.98 across conditions. Timing includes startup and logging. Video repeats were omitted because the initial eight completed runs exceeded the predefined 1.5 GPU-hour threshold. Error bars therefore describe variation across eight videos, not seed uncertainty or confidence intervals. Horizon-dependent clip selection confounds cross-horizon comparisons. At $1\times$, early and late windows coincide. Qualitative sampled-frame review found no gross collapse, but did reveal geometry and object discontinuities in both schedules.
 
 \IfFileExists{figures/ablation_curves.pdf}{
 \begin{figure}[ht]
@@ -22,13 +24,16 @@ The proposed extension measures temporal change across horizon multipliers $1,2,
 \centering\includegraphics[width=\linewidth]{figures/sanity_curves.pdf}
 \caption{Our saturation and collapse checks: mean pixel intensity and spatial pixel standard deviation over time for each sampling schedule and horizon. These complement temporal change, because freezing can produce a near-zero divergence curve without a plausible rollout.}
 \end{figure}}{}
-\subsection{Guidance-scale sweep: pending}
-The planned maze sweep evaluates guidance scales one through five in both environments. No measured guidance effect is available: \textbf{[TBD]}. The analysis distinguishes episode-to-episode variation within each run from variation of run means across model seeds; repeated model seeds retain the upstream fixed environment seed.
+\clearpage
+\subsection{Guidance-scale sweep}
+Guidance scales one through five were evaluated in both mazes at seed zero, with two additional model seeds at default guidance. From scale 1 to 5, medium reward rises from 56.24 to 129.62, success from 55.47\% to 100\%, and censored first-reach steps fall from 436.12 to 226.39. Large reward rises from 109.34 to 170.45 and first-reach steps fall from 518.05 to 338.44; success rises from 72.66\% to 90.63\%, with a small dip at scale 4. Thus stronger guidance generally improves these released-code outcomes, with diminishing reward gains at high scales. Only defaults have repeated model seeds, and all retain fixed environment seed zero. The sweep does not establish a robust optimal scale or a matched advantage over Diffuser.
+
 \IfFileExists{figures/guidance_sweep.pdf}{
 \begin{figure}[ht]
 \centering\includegraphics[width=\linewidth]{figures/guidance_sweep.pdf}
 \caption{Our guidance-scale ablation: raw episode reward, reward-if-stay and first-reach steps (censored for failures). Error bars show standard deviation of seed means when repeated, otherwise episode standard deviation. These are descriptive uncertainties, not confidence intervals.}
 \end{figure}}{}
 
+\clearpage
 \paragraph{Planned final-report extension.}
 MDF-lite will assign independent noise levels to modalities such as vision, proprioception, force and actions for the team's robot-arm screw-driving task, inspired by Multimodal Diffusion Forcing \cite{huang2026multimodal}. Demonstrations are planned by 2026-11-19 and a trained model by 2026-12-03. This draft contains no implementation or results for that extension.

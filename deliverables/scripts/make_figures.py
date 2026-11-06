@@ -240,13 +240,18 @@ def maze_comparisons(root, figures):
     for env, scale in [('medium', 3), ('large', 2)]:
         runs = sorted((root / 'runs').glob(f'maze_{env}_g{scale}_s0'))
         if not runs: continue
-        for source in runs[0].glob('validation_*_sample_*.png'):
+        for source in runs[0].glob('validation*_sample_*.png'):
             shutil.copy2(source, figures / 'maze' / (runs[0].name + '_' + source.name))
         original = figures / f'original_maze_fig15_{env}.png'
-        own = runs[0] / 'validation_plan_sample_0.png'
-        if not (original.exists() and own.exists()): continue
-        fig, axes = plt.subplots(1, 2, figsize=(6.8, 3.1), layout='constrained')
-        for ax, path, title in zip(axes, [original, own], ['Original: Figure 15', f'Ours: {env}, guidance {scale}']):
+        plans = sorted(runs[0].glob('validation*_plan_sample_0.png'))
+        if not (original.exists() and plans): continue
+        own = plans[-1]
+        fig = plt.figure(figsize=(6.8, 4.0), layout='constrained')
+        grid = fig.add_gridspec(2, 2, height_ratios=[1, 2])
+        axes = [fig.add_subplot(grid[0, :]), fig.add_subplot(grid[1, 0]), fig.add_subplot(grid[1, 1])]
+        interaction = runs[0] / 'validation_interaction_sample_0.png'
+        for ax, path, title in zip(axes, [original, own, interaction],
+                                  ['Original: Figure 15', f'Ours: {env}, guidance {scale}, plan 0', 'Ours: executed trajectory 0']):
             ax.imshow(Image.open(path)); ax.axis('off'); ax.set_title(title)
         save(fig, figures / f'r2_{env}_compare')
 

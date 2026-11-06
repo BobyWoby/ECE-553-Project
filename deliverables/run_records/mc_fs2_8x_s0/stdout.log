@@ -1,0 +1,162 @@
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+INFO: Seed set to 0
+[2026-11-06 00:45:29,699][lightning.fabric.utilities.seed][INFO] - Seed set to 0
+INFO: Using 16bit Automatic Mixed Precision (AMP)
+Non-A100 GPU detected, using math or mem efficient attention if input tensor is on cuda
+[2026-11-06 00:45:29,843][lightning.pytorch.utilities.rank_zero][INFO] - Using 16bit Automatic Mixed Precision (AMP)
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/lightning/pytorch/plugins/precision/amp.py:54: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+INFO: GPU available: True (cuda), used: True
+[2026-11-06 00:45:29,847][lightning.pytorch.utilities.rank_zero][INFO] - GPU available: True (cuda), used: True
+INFO: TPU available: False, using: 0 TPU cores
+[2026-11-06 00:45:29,847][lightning.pytorch.utilities.rank_zero][INFO] - TPU available: False, using: 0 TPU cores
+INFO: IPU available: False, using: 0 IPUs
+[2026-11-06 00:45:29,847][lightning.pytorch.utilities.rank_zero][INFO] - IPU available: False, using: 0 IPUs
+INFO: HPU available: False, using: 0 HPUs
+[2026-11-06 00:45:29,847][lightning.pytorch.utilities.rank_zero][INFO] - HPU available: False, using: 0 HPUs
+INFO: `Trainer(limit_val_batches=1)` was configured so 1 batch will be used.
+[2026-11-06 00:45:29,847][lightning.pytorch.utilities.rank_zero][INFO] - `Trainer(limit_val_batches=1)` was configured so 1 batch will be used.
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id 6atj78eu.
+wandb: Tracking run with wandb version 0.17.9
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+INFO: Restoring states from the checkpoint path at outputs/minecraft.ckpt
+[2026-11-06 00:45:30,457][lightning.pytorch.utilities.rank_zero][INFO] - Restoring states from the checkpoint path at outputs/minecraft.ckpt
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/lightning/fabric/utilities/cloud_io.py:56: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/lightning/pytorch/utilities/migration/utils.py:55: The loaded checkpoint was produced with Lightning v2.3.2, which is newer than your current Lightning version: v2.1.4
+INFO: LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-11-06 00:45:30,726][lightning.pytorch.accelerators.cuda][INFO] - LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+INFO: Loaded model weights from the checkpoint at outputs/minecraft.ckpt
+[2026-11-06 00:45:30,726][lightning.pytorch.utilities.rank_zero][INFO] - Loaded model weights from the checkpoint at outputs/minecraft.ckpt
+Validation: |          | 0/? [00:00<?, ?it/s]Validation:   0%|          | 0/1 [00:00<?, ?it/s]Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]
+Sampling:   2%|▎         | 2/80 [00:00<?, ?it/s][A
+Sampling:   2%|▎         | 2/80 [00:00<?, ?it/s, start=0, end=4][A
+Sampling:   5%|▌         | 4/80 [00:37<23:54, 18.88s/it, start=0, end=4][A
+Sampling:   5%|▌         | 4/80 [00:37<23:54, 18.88s/it, start=0, end=6][A
+Sampling:   8%|▊         | 6/80 [01:25<26:58, 21.87s/it, start=0, end=6][A
+Sampling:   8%|▊         | 6/80 [01:25<26:58, 21.87s/it, start=0, end=8][A
+Sampling:  10%|█         | 8/80 [02:29<31:46, 26.48s/it, start=0, end=8][A
+Sampling:  10%|█         | 8/80 [02:29<31:46, 26.48s/it, start=0, end=10][A
+Sampling:  12%|█▎        | 10/80 [03:50<37:20, 32.01s/it, start=0, end=10][A
+Sampling:  12%|█▎        | 10/80 [03:50<37:20, 32.01s/it, start=2, end=12][A
+Sampling:  15%|█▌        | 12/80 [05:11<39:47, 35.10s/it, start=2, end=12][A
+Sampling:  15%|█▌        | 12/80 [05:11<39:47, 35.10s/it, start=4, end=14][A
+Sampling:  18%|█▊        | 14/80 [06:33<40:40, 36.98s/it, start=4, end=14][A
+Sampling:  18%|█▊        | 14/80 [06:33<40:40, 36.98s/it, start=6, end=16][A
+Sampling:  20%|██        | 16/80 [07:54<40:43, 38.18s/it, start=6, end=16][A
+Sampling:  20%|██        | 16/80 [07:54<40:43, 38.18s/it, start=8, end=18][A
+Sampling:  22%|██▎       | 18/80 [09:15<40:15, 38.97s/it, start=8, end=18][A
+Sampling:  22%|██▎       | 18/80 [09:15<40:15, 38.97s/it, start=10, end=20][A
+Sampling:  25%|██▌       | 20/80 [10:36<39:30, 39.50s/it, start=10, end=20][A
+Sampling:  25%|██▌       | 20/80 [10:36<39:30, 39.50s/it, start=12, end=22][A
+Sampling:  28%|██▊       | 22/80 [11:58<38:32, 39.87s/it, start=12, end=22][A
+Sampling:  28%|██▊       | 22/80 [11:58<38:32, 39.87s/it, start=14, end=24][A
+Sampling:  30%|███       | 24/80 [13:19<37:26, 40.12s/it, start=14, end=24][A
+Sampling:  30%|███       | 24/80 [13:19<37:26, 40.12s/it, start=16, end=26][A
+Sampling:  32%|███▎      | 26/80 [14:41<36:15, 40.29s/it, start=16, end=26][A
+Sampling:  32%|███▎      | 26/80 [14:41<36:15, 40.29s/it, start=18, end=28][A
+Sampling:  35%|███▌      | 28/80 [16:02<35:01, 40.41s/it, start=18, end=28][A
+Sampling:  35%|███▌      | 28/80 [16:02<35:01, 40.41s/it, start=20, end=30][A
+Sampling:  38%|███▊      | 30/80 [17:23<33:44, 40.49s/it, start=20, end=30][A
+Sampling:  38%|███▊      | 30/80 [17:23<33:44, 40.49s/it, start=22, end=32][A
+Sampling:  40%|████      | 32/80 [18:45<32:26, 40.55s/it, start=22, end=32][A
+Sampling:  40%|████      | 32/80 [18:45<32:26, 40.55s/it, start=24, end=34][A
+Sampling:  42%|████▎     | 34/80 [20:06<31:06, 40.58s/it, start=24, end=34][A
+Sampling:  42%|████▎     | 34/80 [20:06<31:06, 40.58s/it, start=26, end=36][A
+Sampling:  45%|████▌     | 36/80 [21:27<29:46, 40.61s/it, start=26, end=36][A
+Sampling:  45%|████▌     | 36/80 [21:27<29:46, 40.61s/it, start=28, end=38][A
+Sampling:  48%|████▊     | 38/80 [22:49<28:26, 40.63s/it, start=28, end=38][A
+Sampling:  48%|████▊     | 38/80 [22:49<28:26, 40.63s/it, start=30, end=40][A
+Sampling:  50%|█████     | 40/80 [24:10<27:05, 40.64s/it, start=30, end=40][A
+Sampling:  50%|█████     | 40/80 [24:10<27:05, 40.64s/it, start=32, end=42][A
+Sampling:  52%|█████▎    | 42/80 [25:31<25:44, 40.65s/it, start=32, end=42][A
+Sampling:  52%|█████▎    | 42/80 [25:31<25:44, 40.65s/it, start=34, end=44][A
+Sampling:  55%|█████▌    | 44/80 [26:53<24:23, 40.66s/it, start=34, end=44][A
+Sampling:  55%|█████▌    | 44/80 [26:53<24:23, 40.66s/it, start=36, end=46][A
+Sampling:  57%|█████▊    | 46/80 [28:14<23:02, 40.66s/it, start=36, end=46][A
+Sampling:  57%|█████▊    | 46/80 [28:14<23:02, 40.66s/it, start=38, end=48][A
+Sampling:  60%|██████    | 48/80 [29:35<21:41, 40.67s/it, start=38, end=48][A
+Sampling:  60%|██████    | 48/80 [29:35<21:41, 40.67s/it, start=40, end=50][A
+Sampling:  62%|██████▎   | 50/80 [30:57<20:20, 40.67s/it, start=40, end=50][A
+Sampling:  62%|██████▎   | 50/80 [30:57<20:20, 40.67s/it, start=42, end=52][A
+Sampling:  65%|██████▌   | 52/80 [32:18<18:58, 40.67s/it, start=42, end=52][A
+Sampling:  65%|██████▌   | 52/80 [32:18<18:58, 40.67s/it, start=44, end=54][A
+Sampling:  68%|██████▊   | 54/80 [33:40<17:40, 40.80s/it, start=44, end=54][A
+Sampling:  68%|██████▊   | 54/80 [33:40<17:40, 40.80s/it, start=46, end=56][A
+Sampling:  70%|███████   | 56/80 [35:02<16:18, 40.76s/it, start=46, end=56][A
+Sampling:  70%|███████   | 56/80 [35:02<16:18, 40.76s/it, start=48, end=58][A
+Sampling:  72%|███████▎  | 58/80 [36:23<14:56, 40.74s/it, start=48, end=58][A
+Sampling:  72%|███████▎  | 58/80 [36:23<14:56, 40.74s/it, start=50, end=60][A
+Sampling:  75%|███████▌  | 60/80 [37:44<13:34, 40.72s/it, start=50, end=60][A
+Sampling:  75%|███████▌  | 60/80 [37:44<13:34, 40.72s/it, start=52, end=62][A
+Sampling:  78%|███████▊  | 62/80 [39:06<12:12, 40.70s/it, start=52, end=62][A
+Sampling:  78%|███████▊  | 62/80 [39:06<12:12, 40.70s/it, start=54, end=64][A
+Sampling:  80%|████████  | 64/80 [40:27<10:51, 40.70s/it, start=54, end=64][A
+Sampling:  80%|████████  | 64/80 [40:27<10:51, 40.70s/it, start=56, end=66][A
+Sampling:  82%|████████▎ | 66/80 [41:48<09:29, 40.69s/it, start=56, end=66][A
+Sampling:  82%|████████▎ | 66/80 [41:48<09:29, 40.69s/it, start=58, end=68][A
+Sampling:  85%|████████▌ | 68/80 [43:10<08:08, 40.69s/it, start=58, end=68][A
+Sampling:  85%|████████▌ | 68/80 [43:10<08:08, 40.69s/it, start=60, end=70][A
+Sampling:  88%|████████▊ | 70/80 [44:31<06:46, 40.69s/it, start=60, end=70][A
+Sampling:  88%|████████▊ | 70/80 [44:31<06:46, 40.69s/it, start=62, end=72][A
+Sampling:  90%|█████████ | 72/80 [45:53<05:25, 40.69s/it, start=62, end=72][A
+Sampling:  90%|█████████ | 72/80 [45:53<05:25, 40.69s/it, start=64, end=74][A
+Sampling:  92%|█████████▎| 74/80 [47:14<04:04, 40.69s/it, start=64, end=74][A
+Sampling:  92%|█████████▎| 74/80 [47:14<04:04, 40.69s/it, start=66, end=76][A
+Sampling:  95%|█████████▌| 76/80 [48:35<02:42, 40.69s/it, start=66, end=76][A
+Sampling:  95%|█████████▌| 76/80 [48:35<02:42, 40.69s/it, start=68, end=78][A
+Sampling:  98%|█████████▊| 78/80 [49:57<01:21, 40.68s/it, start=68, end=78][A
+Sampling:  98%|█████████▊| 78/80 [49:57<01:21, 40.68s/it, start=70, end=80][A
+Sampling: 100%|██████████| 80/80 [51:18<00:00, 40.68s/it, start=70, end=80][ASampling: 100%|██████████| 80/80 [51:18<00:00, 39.47s/it, start=70, end=80]
+Validation DataLoader 0: 100%|██████████| 1/1 [51:19<00:00,  0.00it/s]Validation DataLoader 0: 100%|██████████| 1/1 [51:28<00:00,  0.00it/s]
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+     Validate metric           DataLoader 0
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+     validation/mse         0.07187850773334503
+     validation/psnr        17.454608917236328
+     validation/ssim        0.5292294025421143
+     validation/uiqi               -inf
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+wandb: 
+wandb: Run history:
+wandb:               epoch ▁
+wandb: trainer/global_step ▁▁▁▁▁▁▁▁▁
+wandb:      validation/mse ▁
+wandb:     validation/psnr ▁
+wandb:     validation/ssim ▁
+wandb: 
+wandb: Run summary:
+wandb:               epoch 0
+wandb: trainer/global_step 0
+wandb:      validation/mse 0.07188
+wandb:     validation/psnr 17.45461
+wandb:     validation/ssim 0.52923
+wandb:     validation/uiqi -inf
+wandb: 
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra/wandb/offline-run-20261106_004530-6atj78eu
+wandb: Find logs at: /home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra/wandb/offline-run-20261106_004530-6atj78eu/logs
+wandb: WARNING The new W&B backend becomes opt-out in version 0.18.0; try it out with `wandb.require("core")`! See https://wandb.me/wandb-core for more information.
+	Command being timed: "/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_8x_s0 experiment.tasks=[validation] wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 algorithm.metrics=[]"
+	User time (seconds): 2338.78
+	System time (seconds): 995.60
+	Percent of CPU this job got: 107%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 51:39.75
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 7488588
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 7915400
+	Voluntary context switches: 4049229
+	Involuntary context switches: 331342
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 526368
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

@@ -1,7 +1,7 @@
 \subsection{R1: long video rollout}
-The paper's Figure 3 compares video models, and Figures 8--9 illustrate Minecraft rollout beyond its recurrent training horizon. The source uses the same image file for Figures 8 and 9. We completed one-, two- and eight-times autoregressive runs, each containing eight videos with two context frames. The eight-times run generated 80-frame clips in 102.2 minutes, using a sampled peak of 14,343 MiB VRAM. The four-times horizon and the alternative schedule remain pending.
+The paper's Figure 3 compares video models, and Figures 8--9 illustrate Minecraft rollout beyond its recurrent training horizon. The source uses the same image file for Figures 8 and 9. We completed one-, two-, four- and eight-times autoregressive and full-sequence chunk-two runs, each containing eight videos with two context frames. The eight-times run generated 80-frame clips in 102.2 minutes, using a sampled peak of 14,343 MiB VRAM. All eight conditions contain eight videos at sampling seed zero; schedule comparisons appear in Section 5.
 
-Within the eight-times run, generated-transition LPIPS was $0.1339\pm0.0397$ over the first training horizon and $0.1366\pm0.0566$ over the last (standard deviations across video means); its fitted slope was $8.47\times10^{-5}$ per frame. MSE increased from $0.01450\pm0.00679$ to $0.01780\pm0.00963$. Ground-truth late-horizon means were 0.1382 LPIPS and 0.01415 MSE. Mean intensity across generated frames ranged from 0.3326 to 0.4128, and mean within-frame pixel standard deviation from 0.2516 to 0.2923. These aggregate statistics and the reviewed filmstrips show no gross saturation or complete freezing in this sample, although they do not rule out artifacts in individual videos. The result provides limited support for stable long rollout under the released checkpoint; it does not establish equivalence to the paper's model or baselines.
+Within the eight-times run, generated-transition LPIPS was $0.1339\pm0.0397$ over the first training horizon and $0.1366\pm0.0566$ over the last (standard deviations across video means); its fitted slope was $8.47\times10^{-5}$ per frame. MSE increased from $0.01450\pm0.00679$ to $0.01780\pm0.00963$. Ground-truth late-horizon means were 0.1382 LPIPS and 0.01415 MSE. Mean intensity across generated frames ranged from 0.3326 to 0.4128, and mean within-frame pixel standard deviation from 0.2516 to 0.2923. These aggregate statistics and the reviewed filmstrips show no gross saturation or complete freezing in this sample, although sampled frames show geometry distortions and object discontinuities. All eight videos in each condition were inspected at distributed frames; this does not certify every transition. The result provides limited support for stable long rollout under the released checkpoint; it does not establish equivalence to the paper's model or baselines.
 
 The two-times run yielded late-horizon MSE $0.01044\pm0.00550$ and LPIPS $0.1248\pm0.0614$. The separate one-times run yielded MSE $0.01313\pm0.00648$ and LPIPS $0.1433\pm0.0543$. Dataset window enumeration changes with horizon, so the one- and eight-times batches are not paired. The within-run early/late comparison above avoids treating them as paired observations. All tensors were finite; eight-times predictions ranged from $-0.1861$ to $1.2999$ before clamping to $[0,1]$ for metrics.
 
@@ -15,21 +15,32 @@ This experiment reproduces only DF's portion of the comparison: the released qui
 \centering\includegraphics[width=\linewidth]{figures/r1_temporal_metrics.pdf}
 \caption{Ours: eight-times autoregressive rollout, with matched ground-truth temporal-change reference. Lines average eight videos; shaded regions in the LPIPS and MSE panels are one standard deviation across videos, not confidence intervals. Dashed vertical lines mark ten-frame training-horizon boundaries. Pixel statistics use clamped $[0,1]$ values.}
 \end{figure}
-\subsection{R2: planning audit, experiments pending}
-The release explicitly changes the planning setting and omits MCG (called MCTG in the README). Exact Table 1 reproduction is therefore not available from the released \texttt{main} workflow. The asterisk on Diffuser denotes a hand-crafted PD controller that ignores generated actions, not merely a matched evaluation setting. The table lists the paper's single-task means; our planning results are pending.
+\subsection{R2: released-checkpoint planning}
+The release changes the planning setting and omits MCG (called MCTG in the README). Exact Table 1 reproduction is therefore unavailable from released \texttt{main}. Diffuser* uses a hand-crafted PD controller that ignores generated actions. Paper scores below provide historical context; our values are raw released-code metrics with a different protocol.
 \begin{table}[ht]
 \centering
-\begin{tabular}{lrrlll}
+\begin{tabular}{lrrrrr}
 \toprule
-Maze & Paper DF & Paper Diffuser* & Ours reward & Ours stay & Ours reach\\
+Maze & Paper DF & Diffuser* & Ours reward & Ours stay & Ours reach\\
 \midrule
-Medium & 149.4 & 121.5 & TBD & TBD & TBD\\
-Large & 159.0 & 123.0 & TBD & TBD & TBD\\
+Medium & 149.4 & 121.5 & 122.72 & 332.73 & 267.27\\
+Large & 159.0 & 123.0 & 139.42 & 376.98 & 423.02\\
 \bottomrule
 \end{tabular}
-\caption{Left numeric columns: original Table 1, Chen et al. Right three columns: our planned released-main evaluation, not yet run. Paper values are historical context, not directly comparable to raw released-code metrics. ``Stay'' denotes reward-if-stay and ``reach'' denotes first-reach steps.}
+\caption{Historical paper Table 1 scores beside our released-main results. Our columns average three model seeds, 128 episodes each, at default guidance 3 (medium) and 2 (large); they are not normalized paper scores. Stay is reward-if-stay; reach is first-reach steps, censored for failures.}
 \end{table}
-The code's \texttt{episode\_reward} is closest in construction to accumulated episode reward; \texttt{episode\_reward\_if\_stay} changes the trajectory outcome by crediting every step after first success. Neither can be compared numerically to paper scores without verifying normalization and evaluation protocol. The implementation increments \texttt{first\_reach} only while the goal has not yet been reached, excluding the successful step, and non-reaching episodes are censored at the evaluated duration. The analysis also records reached flags. MuJoCo 2.1.0 and D4RL now import successfully, and medium/large environments pass two-environment reset/step checks through the planner's vector interface. This verifies setup only; policy evaluation is queued after video sampling. Original planning Figures 14--15 are available in the source, but our corresponding plans are \textbf{[TBD]}.
+Across seed means, reward SD is 3.31 for medium and 6.78 for large; stay/reach SD is 3.54 and 20.22, respectively. Success over the 384 episodes per environment is 98.18\% for medium and 84.38\% for large. Repeats retain environment seed zero, so uncertainty does not cover independently resampled environment seeds.
+
+The code's \texttt{episode\_reward} accumulates episode reward; \texttt{episode\_reward\_if\_stay} credits every step after first success. Neither is directly comparable to paper scores without matching normalization and evaluation. The implementation increments \texttt{first\_reach} while the goal has not yet been reached, excluding the successful step; failures are censored at 600 (medium) or 800 (large) steps. Across all 14 runs, 1,792 episodes supply finite metrics whose means match the analysis tables. Review of the 16 saved plans and 16 saved interactions per run shows successful routes alongside loops and incomplete paths. Predicted paths can approach or cross wall cells, so visual review does not establish collision-free planning.
+\begin{figure}[ht]
+\centering\includegraphics[width=.95\linewidth]{figures/r2_medium_compare.pdf}
+\caption{Medium: original Figure 15 (top), our final predicted plan and executed trajectory for sample zero (bottom), guidance 3. Selected examples illustrate route structure, not aggregate success. Starts and protocols differ.}
+\end{figure}
+\begin{figure}[ht]
+\centering\includegraphics[width=.95\linewidth]{figures/r2_large_compare.pdf}
+\caption{Large: original Figure 15 (top), our final predicted plan and executed trajectory for sample zero (bottom), guidance 2. Predicted and executed paths can differ; this example does not certify collision-free planning.}
+\end{figure}
+\clearpage
 \subsection{R3: expanded theoretical result}
 \begin{table}[ht]
 \centering

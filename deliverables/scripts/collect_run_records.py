@@ -6,7 +6,7 @@ root=Path.home()/'eecs553';d=root/'deliverables';records=[]
 for directory,kind in [('runs','inference'),('analysis_runs','metric_postprocessing')]:
  for path in sorted((root/directory).glob('*/run.json')):
   raw=json.loads(path.read_text());out=d/'run_records'/path.parent.name;out.mkdir(parents=True,exist_ok=True)
-  for filename in ['run.json','stdout.log','gpu_memory.csv','hydra_config.yaml','resolved_config.yaml','visual_review.json']:
+  for filename in ['run.json','stdout.log','gpu_memory.csv','hydra_config.yaml','resolved_config.yaml','visual_review.json','maze_metrics.json']:
    if (path.parent/filename).exists():shutil.copy2(path.parent/filename,out/filename)
   command=raw['command'];command=command if isinstance(command,str) else ' '.join(command)
   records.append(dict(name=raw['name'],kind=kind,command=command,seed=raw.get('seed',''),start=raw['start'],end=raw['end'],wall_minutes=raw['wall_seconds']/60,gpu_hours=raw['gpu_hours'],peak_sampled_vram_mib=raw['peak_sampled_vram_mib'],status=raw.get('status','ok' if raw['exit_code']==0 else 'failed'),output_dir=str(path.parent)))

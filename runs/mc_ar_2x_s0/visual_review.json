@@ -1,7 +1,15 @@
 {
   "approved_to_continue": true,
-  "time": "2026-11-05T22:50:09.090512-05:00",
+  "time": "2026-11-06T12:33:26.623529-05:00",
   "reviewer": "agent",
-  "file": "deliverables/figures/frames/mc_ar_2x_s0.png",
-  "observations": "Viewed first two predictions and ground truth through t=19. Recognizable Minecraft terrain, sky and foliage; predicted motion differs from ground truth, especially second video emerging from under tree canopy. No gross saturation or full freezing visible in sampled frames. This is not a predictive-accuracy result."
+  "scope": "sampled visual review; not exhaustive frame-by-frame or all-episode verification",
+  "file": "deliverables/figures/review/mc_ar_2x_s0.png",
+  "observations": "Inspected all eight videos at context, early, quarter, middle, three-quarter and final frames (deduplicated for short horizons). Recognizable terrain, trees and sky persist with scene changes. No obvious blank padding, global saturation or complete freezing in inspected frames. Geometry distortions, soft textures and object/foliage discontinuities are visible; temporal or semantic fidelity is not certified.",
+  "previous_review": {
+    "approved_to_continue": true,
+    "time": "2026-11-05T22:50:09.090512-05:00",
+    "reviewer": "agent",
+    "file": "deliverables/figures/frames/mc_ar_2x_s0.png",
+    "observations": "Viewed first two predictions and ground truth through t=19. Recognizable Minecraft terrain, sky and foliage; predicted motion differs from ground truth, especially second video emerging from under tree canopy. No gross saturation or full freezing visible in sampled frames. This is not a predictive-accuracy result."
+  }
 }
