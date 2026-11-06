@@ -1,6 +1,7 @@
 # Draft reproducibility run log
 
 ## Status
+- **PAUSED at user request for travel (2026-11-06 00:33 EST). No experiment processes or GPU compute jobs remain. Seven video runs complete; FS2 8x interrupted and archived for restart. Maze runs pending. Current total including interrupted inference: 3.886556 GPU-hours; detailed ledger below. Earlier status bullets are historical and await final integration.**
 - R3: completed corrected intended-ELBO derivation and source audit; printed theorem discrepancies explicitly documented.
 - R1: 1x, 2x and 8x completed with eight videos each; tensors, metrics and filmstrips reviewed. 4x is next, followed by the chunk-two schedule. R2 / 5.1 / 5.2 pending. User authorized public Drive download; all requested checkpoints and mini dataset are now present.
 - Draft sections, bibliography, instrumentation commits/diff, 18 intended configs, original figure assets, runnable analysis/launch scripts, and human checklist prepared.
@@ -23,6 +24,11 @@ Workspace initially empty except .git and protected configuration directories. R
 | metrics_20261105_222900 | `/home/bobywoby/eecs553/.venv/bin/python /home/bobywoby/eecs553/deliverables/scripts/divergence.py /home/bobywoby/eecs553/runs --out /home/bobywoby/eecs553/deliverables/tables` |  | 2026-11-05T22:29:00.322675-05:00 | 2026-11-05T22:29:03.373288-05:00 | 0.051 | 0.000847 | 355 MiB (sampled) | /home/bobywoby/eecs553/analysis_runs/metrics_20261105_222900 | ok | metric_postprocessing; live jobs excluded |
 | mc_ar_2x_s0 | `DF_SEED=0 DF_DUMP_DIR=/home/bobywoby/eecs553/runs/mc_ar_2x_s0 WANDB_MODE=offline /home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_ar_2x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_ar_2x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=2 'algorithm.metrics=[]'` | 0 | 2026-11-05T22:29:17.241217-05:00 | 2026-11-05T22:50:00.522680-05:00 | 20.721 | 0.345356 | 15849 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_ar_2x_s0 | ok | inference; live jobs excluded |
 | metrics_20261105_225002 | `/home/bobywoby/eecs553/.venv/bin/python /home/bobywoby/eecs553/deliverables/scripts/divergence.py /home/bobywoby/eecs553/runs --out /home/bobywoby/eecs553/deliverables/tables` |  | 2026-11-05T22:50:02.145921-05:00 | 2026-11-05T22:50:05.200009-05:00 | 0.051 | 0.000848 | 355 MiB (sampled) | /home/bobywoby/eecs553/analysis_runs/metrics_20261105_225002 | ok | metric_postprocessing; live jobs excluded |
+| mc_ar_4x_s0 | `DF_SEED=0 DF_DUMP_DIR=/home/bobywoby/eecs553/runs/mc_ar_4x_s0 WANDB_MODE=offline /home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_ar_4x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_ar_4x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=4 'algorithm.metrics=[]'` | 0 | 2026-11-05T22:50:12.545008-05:00 | 2026-11-05T23:37:59.918023-05:00 | 47.790 | 0.796492 | 15939 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_ar_4x_s0 | ok | inference; live jobs excluded |
+| mc_fs2_1x_s0 | `DF_SEED=0 DF_DUMP_DIR=/home/bobywoby/eecs553/runs/mc_fs2_1x_s0 WANDB_MODE=offline /home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_1x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_1x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=1 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'` | 0 | 2026-11-05T23:38:11.249493-05:00 | 2026-11-05T23:42:09.391775-05:00 | 3.969 | 0.066151 | 15049 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_fs2_1x_s0 | ok | inference; live jobs excluded |
+| mc_fs2_2x_s0 | `DF_SEED=0 DF_DUMP_DIR=/home/bobywoby/eecs553/runs/mc_fs2_2x_s0 WANDB_MODE=offline /home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_2x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_2x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=2 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'` | 0 | 2026-11-05T23:42:11.593111-05:00 | 2026-11-05T23:53:01.395524-05:00 | 10.830 | 0.180501 | 15071 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_fs2_2x_s0 | ok | inference; live jobs excluded |
+| mc_fs2_4x_s0 | `DF_SEED=0 DF_DUMP_DIR=/home/bobywoby/eecs553/runs/mc_fs2_4x_s0 WANDB_MODE=offline /home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_4x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_4x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=4 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'` | 0 | 2026-11-05T23:53:03.651676-05:00 | 2026-11-06T00:17:34.545602-05:00 | 24.515 | 0.408582 | 15196 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_fs2_4x_s0 | ok | inference; live jobs excluded |
+| mc_fs2_8x_s0_interrupted_20261106_0033 | `DF_SEED=0 DF_DUMP_DIR=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0_interrupted_20261106_0033 WANDB_MODE=offline /home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_8x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'` | 0 | 2026-11-06T00:17:36.860572-05:00 | 2026-11-06T00:33:14.998672-05:00 | 15.636 | 0.260594 | 15257 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_fs2_8x_s0_interrupted_20261106_0033 | interrupted | inference; live jobs excluded |
 
 ## Chronological notes
 - First commands were read-only environment inspection; this log transcribes their outputs immediately afterward.
@@ -1121,3 +1127,2661 @@ name: mc_fs2_2x_s0
 - Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
 
 - Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: mc_fs2_4x_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 8.0e-05
+    batch_size: 8
+    max_epochs: -1
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 1.0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 16-mixed
+    compile: false
+    batch_size: 8
+    val_every_n_step: 5000
+    val_every_n_epoch: null
+    limit_batch: 1
+    inference_mode: true
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 8
+    limit_batch: 1
+    data:
+      num_workers: 16
+      shuffle: false
+  logging:
+    metrics:
+    - fvd
+dataset:
+  debug: false
+  metadata: data/minecraft/metadata.json
+  data_mean: 0.5
+  data_std: 0.5
+  save_dir: data/minecraft
+  n_frames: 10
+  context_length: 2
+  resolution: 128
+  observation_shape:
+  - 3
+  - 128
+  - 128
+  external_cond_dim: 0
+  validation_multiplier: 4
+  frame_skip: 2
+algorithm:
+  debug: false
+  lr: 8.0e-05
+  x_shape:
+  - 3
+  - 128
+  - 128
+  frame_stack: 1
+  frame_skip: 2
+  data_mean: 0.5
+  data_std: 0.5
+  external_cond_dim: 0
+  context_frames: 2
+  weight_decay: 0.002
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.99
+  uncertainty_scale: 1
+  guidance_scale: 0.0
+  chunk_size: 2
+  scheduling_matrix: full_sequence
+  noise_level: random_all
+  causal: true
+  diffusion:
+    objective: pred_v
+    beta_schedule: sigmoid
+    schedule_fn_kwargs: {}
+    clip_noise: 6.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: true
+    snr_clip: 5.0
+    cum_snr_decay: 0.96
+    timesteps: 1000
+    sampling_timesteps: 100
+    ddim_sampling_eta: 0.0
+    stabilization_level: 15
+    architecture:
+      network_size: 64
+      attn_heads: 4
+      attn_dim_head: 64
+      dim_mults:
+      - 1
+      - 2
+      - 4
+      - 8
+      resolution: 128
+      attn_resolutions:
+      - 16
+      - 32
+      - 64
+      - 128
+      use_init_temporal_attn: true
+      use_linear_attn: true
+      time_emb_type: rotary
+  n_frames: 10
+  metadata: data/minecraft/metadata.json
+  metrics: []
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/minecraft.ckpt
+name: mc_fs2_4x_s0
+
+```
+
+| mc_fs2_4x_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_4x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_4x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=4 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'` | 0 | 2026-11-05T23:53:03.651676-05:00 | 2026-11-06T00:17:34.545602-05:00 | 24.515 | 0.408582 | 15196.0 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_fs2_4x_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 3.622275; includes failed attempts.
+
+- Inference queue: completed mc_fs2_4x_s0; automated output checks pass; visual review deferred per user request for unattended execution
+
+- Inference queue: running mc_fs2_8x_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: mc_fs2_8x_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 8.0e-05
+    batch_size: 8
+    max_epochs: -1
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 1.0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 16-mixed
+    compile: false
+    batch_size: 8
+    val_every_n_step: 5000
+    val_every_n_epoch: null
+    limit_batch: 1
+    inference_mode: true
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 8
+    limit_batch: 1
+    data:
+      num_workers: 16
+      shuffle: false
+  logging:
+    metrics:
+    - fvd
+dataset:
+  debug: false
+  metadata: data/minecraft/metadata.json
+  data_mean: 0.5
+  data_std: 0.5
+  save_dir: data/minecraft
+  n_frames: 10
+  context_length: 2
+  resolution: 128
+  observation_shape:
+  - 3
+  - 128
+  - 128
+  external_cond_dim: 0
+  validation_multiplier: 8
+  frame_skip: 2
+algorithm:
+  debug: false
+  lr: 8.0e-05
+  x_shape:
+  - 3
+  - 128
+  - 128
+  frame_stack: 1
+  frame_skip: 2
+  data_mean: 0.5
+  data_std: 0.5
+  external_cond_dim: 0
+  context_frames: 2
+  weight_decay: 0.002
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.99
+  uncertainty_scale: 1
+  guidance_scale: 0.0
+  chunk_size: 2
+  scheduling_matrix: full_sequence
+  noise_level: random_all
+  causal: true
+  diffusion:
+    objective: pred_v
+    beta_schedule: sigmoid
+    schedule_fn_kwargs: {}
+    clip_noise: 6.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: true
+    snr_clip: 5.0
+    cum_snr_decay: 0.96
+    timesteps: 1000
+    sampling_timesteps: 100
+    ddim_sampling_eta: 0.0
+    stabilization_level: 15
+    architecture:
+      network_size: 64
+      attn_heads: 4
+      attn_dim_head: 64
+      dim_mults:
+      - 1
+      - 2
+      - 4
+      - 8
+      resolution: 128
+      attn_resolutions:
+      - 16
+      - 32
+      - 64
+      - 128
+      use_init_temporal_attn: true
+      use_linear_attn: true
+      time_emb_type: rotary
+  n_frames: 10
+  metadata: data/minecraft/metadata.json
+  metrics: []
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/minecraft.ckpt
+name: mc_fs2_8x_s0
+
+```
+
+| mc_fs2_8x_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_8x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'` | 0 | 2026-11-06T00:17:36.860572-05:00 | 2026-11-06T00:33:14.998672-05:00 | 15.636 | 0.260594 | 15257.0 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_fs2_8x_s0 | failed | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 3.882869; includes failed attempts.
+
+- User requested stop now for travel. Stopped coordinator and interrupted FS2 8x via SIGINT; seven successful video conditions preserved. Interrupted attempt archived as mc_fs2_8x_s0_interrupted_20261106_0033; wall 938.138 seconds / 0.260594 GPU-hours, sampled peak 15257 MiB. No resumable mid-run tensor exists; this single condition will restart. Created scripts/resume_queue.py, which skips completed conditions and refuses duplicate queues. Maze inference has not started.
+
+- Inference queue: waiting for already-running mc_ar_8x_s0
+
+- Inference queue: completed mc_ar_1x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: completed mc_ar_8x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: completed mc_ar_2x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: completed mc_ar_4x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: completed mc_fs2_1x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: completed mc_fs2_2x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: completed mc_fs2_4x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running mc_fs2_8x_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: mc_fs2_8x_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 8.0e-05
+    batch_size: 8
+    max_epochs: -1
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 1.0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 16-mixed
+    compile: false
+    batch_size: 8
+    val_every_n_step: 5000
+    val_every_n_epoch: null
+    limit_batch: 1
+    inference_mode: true
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 8
+    limit_batch: 1
+    data:
+      num_workers: 16
+      shuffle: false
+  logging:
+    metrics:
+    - fvd
+dataset:
+  debug: false
+  metadata: data/minecraft/metadata.json
+  data_mean: 0.5
+  data_std: 0.5
+  save_dir: data/minecraft
+  n_frames: 10
+  context_length: 2
+  resolution: 128
+  observation_shape:
+  - 3
+  - 128
+  - 128
+  external_cond_dim: 0
+  validation_multiplier: 8
+  frame_skip: 2
+algorithm:
+  debug: false
+  lr: 8.0e-05
+  x_shape:
+  - 3
+  - 128
+  - 128
+  frame_stack: 1
+  frame_skip: 2
+  data_mean: 0.5
+  data_std: 0.5
+  external_cond_dim: 0
+  context_frames: 2
+  weight_decay: 0.002
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.99
+  uncertainty_scale: 1
+  guidance_scale: 0.0
+  chunk_size: 2
+  scheduling_matrix: full_sequence
+  noise_level: random_all
+  causal: true
+  diffusion:
+    objective: pred_v
+    beta_schedule: sigmoid
+    schedule_fn_kwargs: {}
+    clip_noise: 6.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: true
+    snr_clip: 5.0
+    cum_snr_decay: 0.96
+    timesteps: 1000
+    sampling_timesteps: 100
+    ddim_sampling_eta: 0.0
+    stabilization_level: 15
+    architecture:
+      network_size: 64
+      attn_heads: 4
+      attn_dim_head: 64
+      dim_mults:
+      - 1
+      - 2
+      - 4
+      - 8
+      resolution: 128
+      attn_resolutions:
+      - 16
+      - 32
+      - 64
+      - 128
+      use_init_temporal_attn: true
+      use_linear_attn: true
+      time_emb_type: rotary
+  n_frames: 10
+  metadata: data/minecraft/metadata.json
+  metrics: []
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/minecraft.ckpt
+name: mc_fs2_8x_s0
+
+```
+
+| mc_fs2_8x_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_8x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'` | 0 | 2026-11-06T00:45:27.736754-05:00 | 2026-11-06T01:37:08.010250-05:00 | 51.657 | 0.860947 | 15257.0 MiB (sampled) | /home/bobywoby/eecs553/runs/mc_fs2_8x_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.743815; includes failed attempts.
+
+- Inference queue: completed mc_fs2_8x_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: Video repeats omitted: initial eight runs exceed the 1.5 GPU-hour repeat threshold
+
+- GPU metric postprocessing: {"name": "metrics_20261106_013709", "type": "GPU metric postprocessing", "command": ["/home/bobywoby/eecs553/.venv/bin/python", "/home/bobywoby/eecs553/deliverables/scripts/divergence.py", "/home/bobywoby/eecs553/runs", "--out", "/home/bobywoby/eecs553/deliverables/tables"], "start": "2026-11-06T01:37:09.187250-05:00", "end": "2026-11-06T01:37:13.251209-05:00", "wall_seconds": 4.063931681994291, "gpu_hours": 0.0011288699116650807, "peak_sampled_vram_mib": 355.0, "exit_code": 0}
+
+- Inference queue: running maze_medium_g3_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_medium_g3_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-medium-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-medium-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 600
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 3
+  chunk_size: 600
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 600
+  env_id: maze2d-medium-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_medium_x.ckpt
+name: maze_medium_g3_s0
+
+```
+
+| maze_medium_g3_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g3_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g3_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=3` | 0 | 2026-11-06T01:37:24.854479-05:00 | 2026-11-06T01:38:01.143426-05:00 | 0.605 | 0.010080 | 1291.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_medium_g3_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.753896; includes failed attempts.
+
+- Inference queue: completed maze_medium_g3_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_large_g2_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_large_g2_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-large-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-large-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 800
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 2
+  chunk_size: 800
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 800
+  env_id: maze2d-large-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_large_x.ckpt
+name: maze_large_g2_s0
+
+```
+
+| maze_large_g2_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_large_g2_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_large_g2_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_large 'dataset.observation_mean=[3.7296331,5.3047247]' 'dataset.observation_std=[1.8070312,2.5687592]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_large_x.ckpt algorithm.guidance_scale=2` | 0 | 2026-11-06T01:38:02.358802-05:00 | 2026-11-06T01:38:58.819361-05:00 | 0.941 | 0.015683 | 1717.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_large_g2_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.769579; includes failed attempts.
+
+- Inference queue: completed maze_large_g2_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_medium_g1_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_medium_g1_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-medium-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-medium-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 600
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 1
+  chunk_size: 600
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 600
+  env_id: maze2d-medium-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_medium_x.ckpt
+name: maze_medium_g1_s0
+
+```
+
+| maze_medium_g1_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g1_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g1_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=1` | 0 | 2026-11-06T01:39:00.054516-05:00 | 2026-11-06T01:39:36.363192-05:00 | 0.605 | 0.010086 | 1291.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_medium_g1_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.779665; includes failed attempts.
+
+- Inference queue: completed maze_medium_g1_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_medium_g2_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_medium_g2_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-medium-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-medium-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 600
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 2
+  chunk_size: 600
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 600
+  env_id: maze2d-medium-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_medium_x.ckpt
+name: maze_medium_g2_s0
+
+```
+
+| maze_medium_g2_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g2_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g2_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=2` | 0 | 2026-11-06T01:39:37.567693-05:00 | 2026-11-06T01:40:13.866083-05:00 | 0.605 | 0.010083 | 1291.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_medium_g2_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.789748; includes failed attempts.
+
+- Inference queue: completed maze_medium_g2_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_medium_g4_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_medium_g4_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-medium-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-medium-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 600
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 4
+  chunk_size: 600
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 600
+  env_id: maze2d-medium-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_medium_x.ckpt
+name: maze_medium_g4_s0
+
+```
+
+| maze_medium_g4_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g4_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g4_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=4` | 0 | 2026-11-06T01:40:15.049399-05:00 | 2026-11-06T01:40:51.345003-05:00 | 0.605 | 0.010082 | 1291.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_medium_g4_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.799830; includes failed attempts.
+
+- Inference queue: completed maze_medium_g4_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_medium_g5_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_medium_g5_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-medium-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-medium-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 600
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 5
+  chunk_size: 600
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 600
+  env_id: maze2d-medium-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_medium_x.ckpt
+name: maze_medium_g5_s0
+
+```
+
+| maze_medium_g5_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g5_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g5_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=5` | 0 | 2026-11-06T01:40:52.539970-05:00 | 2026-11-06T01:41:28.846794-05:00 | 0.605 | 0.010085 | 1291.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_medium_g5_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.809915; includes failed attempts.
+
+- Inference queue: completed maze_medium_g5_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_medium_g3_s1
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_medium_g3_s1
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-medium-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-medium-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 600
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 3
+  chunk_size: 600
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 600
+  env_id: maze2d-medium-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_medium_x.ckpt
+name: maze_medium_g3_s1
+
+```
+
+| maze_medium_g3_s1 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g3_s1 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g3_s1/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=3` | 1 | 2026-11-06T01:41:30.050490-05:00 | 2026-11-06T01:42:06.334363-05:00 | 0.605 | 0.010079 | 1291.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_medium_g3_s1 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.819994; includes failed attempts.
+
+- Inference queue: completed maze_medium_g3_s1; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_medium_g3_s2
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_medium_g3_s2
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-medium-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-medium-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 600
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 3
+  chunk_size: 600
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0236665
+  reward_std: 0.15200786
+  observation_mean:
+  - 3.5092521
+  - 3.4765592
+  observation_std:
+  - 1.3371079
+  - 1.52102
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 600
+  env_id: maze2d-medium-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_medium_x.ckpt
+name: maze_medium_g3_s2
+
+```
+
+| maze_medium_g3_s2 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g3_s2 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g3_s2/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=3` | 2 | 2026-11-06T01:42:07.565993-05:00 | 2026-11-06T01:42:43.862833-05:00 | 0.605 | 0.010082 | 1291.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_medium_g3_s2 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.830076; includes failed attempts.
+
+- Inference queue: completed maze_medium_g3_s2; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_large_g1_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_large_g1_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-large-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-large-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 800
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 1
+  chunk_size: 800
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 800
+  env_id: maze2d-large-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_large_x.ckpt
+name: maze_large_g1_s0
+
+```
+
+| maze_large_g1_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_large_g1_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_large_g1_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_large 'dataset.observation_mean=[3.7296331,5.3047247]' 'dataset.observation_std=[1.8070312,2.5687592]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_large_x.ckpt algorithm.guidance_scale=1` | 0 | 2026-11-06T01:42:45.047994-05:00 | 2026-11-06T01:43:39.503939-05:00 | 0.908 | 0.015127 | 1717.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_large_g1_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.845203; includes failed attempts.
+
+- Inference queue: completed maze_large_g1_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_large_g3_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_large_g3_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-large-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-large-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 800
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 3
+  chunk_size: 800
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 800
+  env_id: maze2d-large-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_large_x.ckpt
+name: maze_large_g3_s0
+
+```
+
+| maze_large_g3_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_large_g3_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_large_g3_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_large 'dataset.observation_mean=[3.7296331,5.3047247]' 'dataset.observation_std=[1.8070312,2.5687592]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_large_x.ckpt algorithm.guidance_scale=3` | 0 | 2026-11-06T01:43:40.691439-05:00 | 2026-11-06T01:44:35.144297-05:00 | 0.908 | 0.015126 | 1717.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_large_g3_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.860329; includes failed attempts.
+
+- Inference queue: completed maze_large_g3_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_large_g4_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_large_g4_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-large-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-large-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 800
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 4
+  chunk_size: 800
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 800
+  env_id: maze2d-large-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_large_x.ckpt
+name: maze_large_g4_s0
+
+```
+
+| maze_large_g4_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_large_g4_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_large_g4_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_large 'dataset.observation_mean=[3.7296331,5.3047247]' 'dataset.observation_std=[1.8070312,2.5687592]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_large_x.ckpt algorithm.guidance_scale=4` | 0 | 2026-11-06T01:44:36.315020-05:00 | 2026-11-06T01:45:30.759652-05:00 | 0.907 | 0.015124 | 1717.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_large_g4_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.875452; includes failed attempts.
+
+- Inference queue: completed maze_large_g4_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_large_g5_s0
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_large_g5_s0
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-large-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-large-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 800
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 5
+  chunk_size: 800
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 800
+  env_id: maze2d-large-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_large_x.ckpt
+name: maze_large_g5_s0
+
+```
+
+| maze_large_g5_s0 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_large_g5_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_large_g5_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_large 'dataset.observation_mean=[3.7296331,5.3047247]' 'dataset.observation_std=[1.8070312,2.5687592]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_large_x.ckpt algorithm.guidance_scale=5` | 0 | 2026-11-06T01:45:31.911622-05:00 | 2026-11-06T01:46:28.386303-05:00 | 0.941 | 0.015687 | 1717.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_large_g5_s0 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.891140; includes failed attempts.
+
+- Inference queue: completed maze_large_g5_s0; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_large_g2_s1
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_large_g2_s1
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-large-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-large-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 800
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 2
+  chunk_size: 800
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 800
+  env_id: maze2d-large-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_large_x.ckpt
+name: maze_large_g2_s1
+
+```
+
+| maze_large_g2_s1 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_large_g2_s1 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_large_g2_s1/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_large 'dataset.observation_mean=[3.7296331,5.3047247]' 'dataset.observation_std=[1.8070312,2.5687592]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_large_x.ckpt algorithm.guidance_scale=2` | 1 | 2026-11-06T01:46:29.629813-05:00 | 2026-11-06T01:47:26.093354-05:00 | 0.941 | 0.015684 | 1717.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_large_g2_s1 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.906824; includes failed attempts.
+
+- Inference queue: completed maze_large_g2_s1; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: running maze_large_g2_s2
+
+- Checkpoint SHA256: `33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6  maze2d_large_x.ckpt`
+
+- Checkpoint SHA256: `a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d  maze2d_large_xv.ckpt`
+
+- Checkpoint SHA256: `a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600  maze2d_large_xva.ckpt`
+
+- Checkpoint SHA256: `4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2  maze2d_medium_x.ckpt`
+
+- Checkpoint SHA256: `c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc  maze2d_medium_xv.ckpt`
+
+- Checkpoint SHA256: `769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680  maze2d_medium_xva.ckpt`
+
+- Checkpoint SHA256: `d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb  minecraft.ckpt`
+
+### Resolved config: maze_large_g2_s2
+```yaml
+experiment:
+  debug: false
+  tasks:
+  - validation
+  num_nodes: 1
+  training:
+    precision: 16-mixed
+    compile: false
+    lr: 0.0005
+    batch_size: 1024
+    max_epochs: 1000
+    max_steps: 200005
+    max_time: null
+    data:
+      num_workers: 8
+      shuffle: true
+    optim:
+      accumulate_grad_batches: 1
+      gradient_clip_val: 0
+    checkpointing:
+      every_n_train_steps: 10000
+      every_n_epochs: null
+      train_time_interval: null
+      enable_version_counter: false
+  validation:
+    precision: 32
+    compile: false
+    batch_size: 128
+    val_every_n_step: null
+    val_every_n_epoch: 10
+    limit_batch: 1
+    inference_mode: false
+    data:
+      num_workers: 16
+      shuffle: false
+  test:
+    precision: 16-mixed
+    compile: false
+    batch_size: 16
+    limit_batch: null
+    data:
+      num_workers: 16
+      shuffle: false
+dataset:
+  debug: false
+  env_id: maze2d-large-v1
+  save_dir: data/maze2d
+  dataset_url: http://rail.eecs.berkeley.edu/datasets/offline_rl/maze2d/maze2d-large-sparse-v1.hdf5
+  gamma: 1.0
+  episode_len: 800
+  observation_shape:
+  - 4
+  action_dim: 2
+  goal_dim: 2
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+algorithm:
+  debug: false
+  lr: 0.0005
+  x_shape: null
+  frame_stack: 10
+  frame_skip: 1
+  data_mean: null
+  data_std: null
+  external_cond_dim: 0
+  context_frames: 1
+  weight_decay: 0.0001
+  warmup_steps: 10000
+  optimizer_beta:
+  - 0.9
+  - 0.999
+  uncertainty_scale: 1
+  guidance_scale: 2
+  chunk_size: 800
+  scheduling_matrix: pyramid
+  noise_level: random_all
+  causal: false
+  diffusion:
+    objective: pred_x0
+    beta_schedule: linear
+    schedule_fn_kwargs: {}
+    clip_noise: 20.0
+    use_snr: false
+    use_cum_snr: false
+    use_fused_snr: false
+    snr_clip: 5.0
+    cum_snr_decay: 0.98
+    timesteps: 1000
+    sampling_timesteps: 50
+    ddim_sampling_eta: 0.0
+    stabilization_level: 10
+    architecture:
+      network_size: 128
+      num_layers: 12
+      attn_heads: 4
+      dim_feedforward: 512
+  reward_mean: 0.0089225
+  reward_std: 0.09403666
+  observation_mean:
+  - 3.7296331
+  - 5.3047247
+  observation_std:
+  - 1.8070312
+  - 2.5687592
+  action_mean: []
+  action_std: []
+  gamma: 1.0
+  episode_len: 800
+  env_id: maze2d-large-v1
+  open_loop_horizon: 50
+  use_reward: false
+  plot_start_goal: true
+  padding_mode: same
+debug: false
+wandb:
+  entity: offline-local
+  project: diffusion-forcing
+  mode: offline
+resume: null
+load: outputs/maze2d_large_x.ckpt
+name: maze_large_g2_s2
+
+```
+
+| maze_large_g2_s2 | `/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_large_g2_s2 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_large_g2_s2/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_large 'dataset.observation_mean=[3.7296331,5.3047247]' 'dataset.observation_std=[1.8070312,2.5687592]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_large_x.ckpt algorithm.guidance_scale=2` | 2 | 2026-11-06T01:47:27.288538-05:00 | 2026-11-06T01:48:21.728575-05:00 | 0.907 | 0.015122 | 1717.0 MiB (sampled) | /home/bobywoby/eecs553/runs/maze_large_g2_s2 | ok | env seed fixed 0 for maze |
+
+- Cumulative inference-attempt wall-GPU-hours: 4.921946; includes failed attempts.
+
+- Inference queue: completed maze_large_g2_s2; automated output checks pass; visual review deferred (--unattended)
+
+- Inference queue: INFERENCE AND ANALYSIS COMPLETE; report integration and visual review remain

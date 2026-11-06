@@ -1,3 +1,5 @@
+**PAUSED FOR TRAVEL:** Seven video conditions completed. Final FS2 8x was interrupted at user request; its logs are preserved and it must restart. Run `~/eecs553/.venv/bin/python ~/eecs553/deliverables/scripts/resume_queue.py` to continue the unattended queue. Visual review/report integration remain pending.
+
 # Diffusion Forcing reproducibility study
 
 This study evaluates the released Diffusion Forcing checkpoints and works through

@@ -1,0 +1,14 @@
+{
+  "name": "mc_fs2_8x_s0_interrupted_20261106_0033",
+  "command": "/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_8x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 'algorithm.metrics=[]'",
+  "seed": 0,
+  "start": "2026-11-06T00:17:36.860572-05:00",
+  "end": "2026-11-06T00:33:14.998672-05:00",
+  "wall_seconds": 938.1380624589983,
+  "gpu_hours": 0.2605939062386106,
+  "peak_sampled_vram_mib": 15257.0,
+  "status": "interrupted",
+  "exit_code": 99,
+  "original_run_name": "mc_fs2_8x_s0",
+  "notes": "User requested stop now for travel; restart this condition from the beginning. Existing exit_code is launcher missing-output status after Lightning handled SIGINT."
+}

@@ -1,6 +1,6 @@
 {
-  "attempts": 6,
-  "successful": 6,
-  "inference_wall_gpu_hours": 3.2136931648627765,
+  "attempts": 23,
+  "successful": 22,
+  "inference_wall_gpu_hours": 4.921946119319717,
   "setup_diagnostic_wall_gpu_hours": 0.0011451148780558165
 }

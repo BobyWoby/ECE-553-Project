@@ -1,0 +1,85 @@
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/hydra/_internal/defaults_list.py:251: UserWarning: In 'config': Defaults list is missing `_self_`. See https://hydra.cc/docs/1.2/upgrades/1.0_to_1.1/default_composition_order for more information
+  warnings.warn(msg, UserWarning)
+INFO: Seed set to 0
+[2026-11-06 00:17:39,010][lightning.fabric.utilities.seed][INFO] - Seed set to 0
+INFO: Using 16bit Automatic Mixed Precision (AMP)
+Non-A100 GPU detected, using math or mem efficient attention if input tensor is on cuda
+[2026-11-06 00:17:39,173][lightning.pytorch.utilities.rank_zero][INFO] - Using 16bit Automatic Mixed Precision (AMP)
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/lightning/pytorch/plugins/precision/amp.py:54: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+INFO: GPU available: True (cuda), used: True
+[2026-11-06 00:17:39,177][lightning.pytorch.utilities.rank_zero][INFO] - GPU available: True (cuda), used: True
+INFO: TPU available: False, using: 0 TPU cores
+[2026-11-06 00:17:39,177][lightning.pytorch.utilities.rank_zero][INFO] - TPU available: False, using: 0 TPU cores
+INFO: IPU available: False, using: 0 IPUs
+[2026-11-06 00:17:39,177][lightning.pytorch.utilities.rank_zero][INFO] - IPU available: False, using: 0 IPUs
+INFO: HPU available: False, using: 0 HPUs
+[2026-11-06 00:17:39,177][lightning.pytorch.utilities.rank_zero][INFO] - HPU available: False, using: 0 HPUs
+INFO: `Trainer(limit_val_batches=1)` was configured so 1 batch will be used.
+[2026-11-06 00:17:39,177][lightning.pytorch.utilities.rank_zero][INFO] - `Trainer(limit_val_batches=1)` was configured so 1 batch will be used.
+wandb: WARNING `resume` will be ignored since W&B syncing is set to `offline`. Starting a new run with run id vb8hpdve.
+wandb: Tracking run with wandb version 0.17.9
+wandb: W&B syncing is set to `offline` in this directory.  
+wandb: Run `wandb online` or set WANDB_MODE=online to enable cloud syncing.
+INFO: Restoring states from the checkpoint path at outputs/minecraft.ckpt
+[2026-11-06 00:17:39,818][lightning.pytorch.utilities.rank_zero][INFO] - Restoring states from the checkpoint path at outputs/minecraft.ckpt
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/lightning/fabric/utilities/cloud_io.py:56: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/lightning/pytorch/utilities/migration/utils.py:55: The loaded checkpoint was produced with Lightning v2.3.2, which is newer than your current Lightning version: v2.1.4
+INFO: LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+[2026-11-06 00:17:40,037][lightning.pytorch.accelerators.cuda][INFO] - LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+INFO: Loaded model weights from the checkpoint at outputs/minecraft.ckpt
+[2026-11-06 00:17:40,038][lightning.pytorch.utilities.rank_zero][INFO] - Loaded model weights from the checkpoint at outputs/minecraft.ckpt
+Validation: |          | 0/? [00:00<?, ?it/s]Validation:   0%|          | 0/1 [00:00<?, ?it/s]Validation DataLoader 0:   0%|          | 0/1 [00:00<?, ?it/s]
+Sampling:   2%|▎         | 2/80 [00:00<?, ?it/s][A
+Sampling:   2%|▎         | 2/80 [00:00<?, ?it/s, start=0, end=4][A
+Sampling:   5%|▌         | 4/80 [00:32<20:37, 16.28s/it, start=0, end=4][A
+Sampling:   5%|▌         | 4/80 [00:32<20:37, 16.28s/it, start=0, end=6][A
+Sampling:   8%|▊         | 6/80 [01:21<25:56, 21.03s/it, start=0, end=6][A
+Sampling:   8%|▊         | 6/80 [01:21<25:56, 21.03s/it, start=0, end=8][A
+Sampling:  10%|█         | 8/80 [02:25<31:25, 26.19s/it, start=0, end=8][A
+Sampling:  10%|█         | 8/80 [02:25<31:25, 26.19s/it, start=0, end=10][A
+Sampling:  12%|█▎        | 10/80 [03:47<37:18, 31.98s/it, start=0, end=10][A
+Sampling:  12%|█▎        | 10/80 [03:47<37:18, 31.98s/it, start=2, end=12][A
+Sampling:  15%|█▌        | 12/80 [05:09<39:53, 35.20s/it, start=2, end=12][A
+Sampling:  15%|█▌        | 12/80 [05:09<39:53, 35.20s/it, start=4, end=14][A
+Sampling:  18%|█▊        | 14/80 [06:31<40:50, 37.14s/it, start=4, end=14][A
+Sampling:  18%|█▊        | 14/80 [06:31<40:50, 37.14s/it, start=6, end=16][A
+Sampling:  20%|██        | 16/80 [07:53<40:55, 38.37s/it, start=6, end=16][A
+Sampling:  20%|██        | 16/80 [07:53<40:55, 38.37s/it, start=8, end=18][A
+Sampling:  22%|██▎       | 18/80 [09:14<40:28, 39.18s/it, start=8, end=18][A
+Sampling:  22%|██▎       | 18/80 [09:14<40:28, 39.18s/it, start=10, end=20][A
+Sampling:  25%|██▌       | 20/80 [10:36<39:43, 39.72s/it, start=10, end=20][A
+Sampling:  25%|██▌       | 20/80 [10:36<39:43, 39.72s/it, start=12, end=22][A
+Sampling:  28%|██▊       | 22/80 [11:58<38:45, 40.09s/it, start=12, end=22][A
+Sampling:  28%|██▊       | 22/80 [11:58<38:45, 40.09s/it, start=14, end=24][A
+Sampling:  30%|███       | 24/80 [13:20<37:39, 40.35s/it, start=14, end=24][A
+Sampling:  30%|███       | 24/80 [13:20<37:39, 40.35s/it, start=16, end=26][A
+Sampling:  32%|███▎      | 26/80 [14:42<36:28, 40.52s/it, start=16, end=26][A
+Sampling:  32%|███▎      | 26/80 [14:42<36:28, 40.52s/it, start=18, end=28][A/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/lightning/pytorch/trainer/call.py:54: Detected KeyboardInterrupt, attempting graceful shutdown...
+Sampling:  32%|███▎      | 26/80 [15:28<34:49, 38.69s/it, start=18, end=28]
+wandb: You can sync this run to the cloud by running:
+wandb: wandb sync /home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra/wandb/offline-run-20261106_001739-vb8hpdve
+wandb: Find logs at: /home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra/wandb/offline-run-20261106_001739-vb8hpdve/logs
+wandb: WARNING The new W&B backend becomes opt-out in version 0.18.0; try it out with `wandb.require("core")`! See https://wandb.me/wandb-core for more information.
+Validation DataLoader 0:   0%|          | 0/1 [15:30<?, ?it/s]	Command being timed: "/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_fs2_8x_s0 experiment.tasks=[validation] wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_fs2_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 algorithm.scheduling_matrix=full_sequence algorithm.chunk_size=2 algorithm.metrics=[]"
+	User time (seconds): 740.76
+	System time (seconds): 341.84
+	Percent of CPU this job got: 115%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 15:37.92
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 2273588
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 1
+	Minor (reclaiming a frame) page faults: 7112431
+	Voluntary context switches: 3986232
+	Involuntary context switches: 260347
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 792
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

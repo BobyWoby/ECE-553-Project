@@ -1,0 +1,12 @@
+{
+  "name": "maze_medium_g1_s0",
+  "command": "/home/bobywoby/eecs553/.venv/bin/python -m main +name=maze_medium_g1_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/maze_medium_g1_s0/hydra experiment=exp_planning algorithm=df_planning dataset=maze2d_medium 'dataset.observation_mean=[3.5092521,3.4765592]' 'dataset.observation_std=[1.3371079,1.52102]' 'dataset.action_mean=[]' 'dataset.action_std=[]' load=outputs/maze2d_medium_x.ckpt algorithm.guidance_scale=1",
+  "seed": 0,
+  "start": "2026-11-06T01:39:00.054516-05:00",
+  "end": "2026-11-06T01:39:36.363192-05:00",
+  "wall_seconds": 36.308648833000916,
+  "gpu_hours": 0.010085735786944699,
+  "peak_sampled_vram_mib": 1291.0,
+  "status": "ok",
+  "exit_code": 0
+}
