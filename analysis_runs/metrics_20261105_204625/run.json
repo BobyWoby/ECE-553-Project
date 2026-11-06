@@ -1,0 +1,17 @@
+{
+  "name": "metrics_20261105_204625",
+  "type": "GPU metric postprocessing",
+  "command": [
+    "/home/bobywoby/eecs553/.venv/bin/python",
+    "/home/bobywoby/eecs553/deliverables/scripts/divergence.py",
+    "/home/bobywoby/eecs553/runs",
+    "--out",
+    "/home/bobywoby/eecs553/deliverables/tables"
+  ],
+  "start": "2026-11-05T20:46:25.445711-05:00",
+  "end": "2026-11-05T20:46:28.492604-05:00",
+  "wall_seconds": 3.0468727329971443,
+  "gpu_hours": 0.0008463535369436512,
+  "peak_sampled_vram_mib": 355.0,
+  "exit_code": 0
+}

@@ -1,0 +1,11 @@
+Warning: Flow failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'flow'
+Warning: CARLA failed to import. Set the environment variable D4RL_SUPPRESS_IMPORT_ERROR=1 to suppress this message.
+No module named 'carla'
+pybullet build time: Jan 29 2025 23:16:28
+/home/bobywoby/eecs553/.venv/lib/python3.10/site-packages/stable_baselines3/common/vec_env/patch_gym.py:49: UserWarning: You provided an OpenAI Gym environment. We strongly recommend transitioning to Gymnasium environments. Stable-Baselines3 is automatically wrapping your environments in a compatibility layer, which could potentially cause issues.
+  warnings.warn(
+torch 2.4.1+cu121 CUDA True
+maze2d-medium-v1 reset (2, 4) step (2, 4) reward [0.0, 0.0]
+maze2d-large-v1 reset (2, 4) step (2, 4) reward [0.0, 0.0]
+PASS: setup only, no checkpoint evaluation

@@ -1,0 +1,1 @@
+DF_SEED=0 DF_DUMP_DIR=/home/bobywoby/eecs553/runs/mc_ar_1x_s0 /home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_ar_1x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_ar_1x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=1

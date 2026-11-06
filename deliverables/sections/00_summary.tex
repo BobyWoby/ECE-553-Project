@@ -1,0 +1,12 @@
+\paragraph{Scope of Reproducibility.}
+Diffusion Forcing claims stable video rollout beyond the training horizon, improved Maze2D planning reward and a reweighted ELBO \cite{chen2025diffusion}. This draft audits the released main implementation and expands the proof. Minecraft runs at one, two and eight times the training horizon are completed; Maze2D evaluation remains pending. Franka robotics and time series are excluded.
+\paragraph{Methodology.}
+We use upstream commit \texttt{475e0bcab87545e48b24b39fb46a81fe59d80594}, released pretrained checkpoints and inference-only instrumentation. The actual device is an RTX 4090 Laptop GPU with 16 GB VRAM. No training was performed. Completed inference used 2.17055 GPU-hours; metric postprocessing used 0.00254 GPU-hours, separate from 0.00115 setup diagnostic GPU-hours. Live jobs are excluded.
+\paragraph{Results.}
+In eight 80-frame Minecraft videos, early/late LPIPS was $0.1339/0.1366$, with slope $8.47\times10^{-5}$ per frame. Filmstrips and aggregate pixel statistics showed no gross saturation or complete freezing. This provides limited support for long rollout with the released checkpoint. Planning and schedule differences remain \textbf{[TBD]}. The theoretical audit reconstructs the intended ELBO while identifying sign and indexing discrepancies in the printed appendix.
+\paragraph{What was easy.}
+Once the quickstart archive was available, the released checkpoint loaded and produced finite video tensors. The paper source enabled checking figure provenance, configurations and proof steps; source figures are prepared for comparisons.
+\paragraph{What was difficult.}
+Initial restricted execution hid the GPU; device access now works without driver changes. Legacy MuJoCo needed local headers and compiler compatibility flags; both mazes now pass reset/step and dataset-loading checks. The video checkpoint records 110,000 steps, versus 100,000 in the README. Released attention and sliding-window rollout differ from the paper's RNN, while maze settings and metrics changed and MCG is absent.
+\paragraph{Communication with original authors.}
+\textbf{[TBD: human confirmation required.]} The requested contact concerns robot data, the teacher-forcing baseline and Table 1 evaluation. No email was sent by the agent, and prior correspondence has not been confirmed.

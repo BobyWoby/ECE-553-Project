@@ -1,0 +1,34 @@
+\subsection{Sampling-scheme ablation: prepared, not completed}
+The proposed extension measures temporal change across horizon multipliers $1,2,4,8$ for autoregressive stabilization and full-sequence chunk-two sampling. The planned outputs are LPIPS and MSE curves with horizon boundaries, late-window means against horizon multiplier, and wall time per video. Ground truth supplies a reference distribution restricted to valid frames. The completed one-, two- and eight-times autoregressive runs supply initial measurements (Section 4), but the full horizon/schedule comparison remains \textbf{[TBD]}. The scripts refuse to generate empirical plots without input samples. Eight videos per run, even with three seeds, would provide limited evidence, and horizon-dependent clip selection is a potential confound. A schedule difference should not be interpreted as robust unless it exceeds variation across seeds and clips. The guidance-scale sweep is queued after video evaluation.
+
+\IfFileExists{figures/ablation_curves.pdf}{
+\begin{figure}[ht]
+\centering\includegraphics[width=\linewidth]{figures/ablation_curves.pdf}
+\caption{Our sampling-scheme ablation: LPIPS (top) and MSE (bottom) between consecutive frames. Left: autoregressive stabilization. Right: full-sequence chunk-two sampling. Shading shows valid ground-truth mean plus or minus video standard deviation; dashed vertical lines mark ten-frame horizon boundaries. These are new analyses, not figures from the original paper.}
+\end{figure}}{}
+\IfFileExists{figures/ablation_summary.pdf}{
+\begin{figure}[ht]
+\centering\includegraphics[width=\linewidth]{figures/ablation_summary.pdf}
+\caption{Our late-window temporal change versus horizon multiplier. Error bars show standard deviation of seed means when repeats exist, otherwise standard deviation across videos in the single seed. Gray bands show the mean and standard deviation of ground-truth video means from the longest autoregressive run at seed zero, avoiding duplicate references across repeats and schedules.}
+\end{figure}}{}
+
+\IfFileExists{tables/ablation_summary.tex}{
+\begin{table}[ht]
+\centering\input{tables/ablation_summary}
+\caption{Late-horizon temporal change and end-to-end inference wall time per video. Uncertainty is the standard deviation of seed means when repeated, otherwise the standard deviation across videos. Timing includes process startup and logging.}
+\end{table}}{}
+\IfFileExists{figures/sanity_curves.pdf}{
+\begin{figure}[ht]
+\centering\includegraphics[width=\linewidth]{figures/sanity_curves.pdf}
+\caption{Our saturation and collapse checks: mean pixel intensity and spatial pixel standard deviation over time for each sampling schedule and horizon. These complement temporal change, because freezing can produce a near-zero divergence curve without a plausible rollout.}
+\end{figure}}{}
+\subsection{Guidance-scale sweep: pending}
+The planned maze sweep evaluates guidance scales one through five in both environments. No measured guidance effect is available: \textbf{[TBD]}. The analysis distinguishes episode-to-episode variation within each run from variation of run means across model seeds; repeated model seeds retain the upstream fixed environment seed.
+\IfFileExists{figures/guidance_sweep.pdf}{
+\begin{figure}[ht]
+\centering\includegraphics[width=\linewidth]{figures/guidance_sweep.pdf}
+\caption{Our guidance-scale ablation: raw episode reward, reward-if-stay and first-reach steps (censored for failures). Error bars show standard deviation of seed means when repeated, otherwise episode standard deviation. These are descriptive uncertainties, not confidence intervals.}
+\end{figure}}{}
+
+\paragraph{Planned final-report extension.}
+MDF-lite will assign independent noise levels to modalities such as vision, proprioception, force and actions for the team's robot-arm screw-driving task, inspired by Multimodal Diffusion Forcing \cite{huang2026multimodal}. Demonstrations are planned by 2026-11-19 and a trained model by 2026-12-03. This draft contains no implementation or results for that extension.

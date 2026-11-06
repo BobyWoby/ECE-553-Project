@@ -1,0 +1,9 @@
+{
+  "torch": "2.4.1+cu121",
+  "torch_cuda": "12.1",
+  "device": "NVIDIA GeForce RTX 4090 Laptop GPU",
+  "vram_bytes": 16805396480,
+  "cuda_tensor_and_matmul_check": "PASS",
+  "wall_seconds": 0.25228404998779297,
+  "kind": "setup smoke test, not research experiment"
+}

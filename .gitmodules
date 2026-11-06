@@ -1,0 +1,4 @@
+[submodule "diffusion-forcing"]
+	path = diffusion-forcing
+	url = https://github.com/BobyWoby/ECE-553-Project.git
+	branch = diffusion-forcing

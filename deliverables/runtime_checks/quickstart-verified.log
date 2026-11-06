@@ -1,0 +1,32 @@
+Archive members 83
+{
+  "maze2d_large_x.ckpt": {
+    "sha256": "33c1bc65f82ed3e745924680bd236ddcfdb0a39610f3a5e089d4fd9dfef172f6",
+    "bytes": 29187104
+  },
+  "maze2d_large_xv.ckpt": {
+    "sha256": "a33b1e52ff46b28b49aa64c707eb6c9252db1f4e85d0cffb491ca194eeda518d",
+    "bytes": 29249504
+  },
+  "maze2d_large_xva.ckpt": {
+    "sha256": "a4cbd875ba3ad36a2817f98c178d407b3fd8d228273ff1956327b45f782cf600",
+    "bytes": 29311712
+  },
+  "maze2d_medium_x.ckpt": {
+    "sha256": "4fc9ee61a4bf5061c39871ef2e9d0a33e78a474a3f28448ced3100779a5f06d2",
+    "bytes": 29187104
+  },
+  "maze2d_medium_xv.ckpt": {
+    "sha256": "c16a368397ea15eecf1f5dda78362a3ac2aed37c41a01e25a2d527fc0c2d76fc",
+    "bytes": 29249504
+  },
+  "maze2d_medium_xva.ckpt": {
+    "sha256": "769d961dac56b98f44bc028463b09469691a2b4fc58f3c7aec1ee049893e6680",
+    "bytes": 29311712
+  },
+  "minecraft.ckpt": {
+    "sha256": "d0d0f9d4481d46acd01af0422a660751425f2506a82ee9fd103798280ea7ffcb",
+    "bytes": 414735228
+  }
+}
+Minecraft files 45

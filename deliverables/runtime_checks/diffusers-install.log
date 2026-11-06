@@ -1,0 +1,9 @@
+Using Python 3.10.22 environment at: /home/bobywoby/eecs553/.venv
+Resolved 27 packages in 137ms
+Downloading diffusers (2.5MiB)
+ Downloaded diffusers
+Prepared 1 package in 1.15s
+Uninstalled 1 package in 18ms
+Installed 1 package in 31ms
+ - diffusers==0.41.0
+ + diffusers==0.30.3

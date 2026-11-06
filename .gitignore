@@ -1,0 +1,33 @@
+# Local environments, credentials, and editor state
+.*
+!.gitignore
+!.gitmodules
+
+# Downloaded data, models, packages, and archives
+*.pt
+*.pth
+*.ckpt
+*.hdf5
+*.whl
+*.tar.gz
+*.tgz
+/df_src/
+/paper.pdf
+/tools/
+
+# Setup source is useful; dependency builds and machine logs are local
+/setup/*
+!/setup/*.py
+!/setup/first_run_command.txt
+
+# Keep run configs, measurements, and console records, not W&B caches
+**/wandb/
+/runs/*/hydra/
+__pycache__/
+*.py[cod]
+
+# Reproducible document build intermediates
+/deliverables/preview/*.png
+/deliverables/preview/*.log
+/deliverables/preview/*.blg
+/deliverables/preview/*stdout.txt

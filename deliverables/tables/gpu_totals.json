@@ -1,0 +1,8 @@
+{
+  "inference": 2.1705493801855553,
+  "metric_postprocessing": 0.002542088330000196,
+  "setup_diagnostic": 0.0011451148780558165,
+  "total_completed_wall_gpu_hours": 2.1742365833936113,
+  "as_of": "2026-11-05T22:50:43.449994-05:00",
+  "live_jobs_excluded": true
+}

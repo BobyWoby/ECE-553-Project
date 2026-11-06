@@ -1,0 +1,12 @@
+{
+  "name": "mc_ar_8x_s0",
+  "command": "/home/bobywoby/eecs553/.venv/bin/python -m main +name=mc_ar_8x_s0 'experiment.tasks=[validation]' wandb.mode=offline wandb.entity=offline-local hydra.run.dir=/home/bobywoby/eecs553/runs/mc_ar_8x_s0/hydra load=outputs/minecraft.ckpt dataset.metadata=data/minecraft/metadata.json dataset.validation_multiplier=8 'algorithm.metrics=[]'",
+  "seed": 0,
+  "start": "2026-11-05T20:46:46.346008-05:00",
+  "end": "2026-11-05T22:28:57.020630-05:00",
+  "wall_seconds": 6130.674595299999,
+  "gpu_hours": 1.7029651653611109,
+  "peak_sampled_vram_mib": 14343.0,
+  "status": "ok",
+  "exit_code": 0
+}

@@ -1,0 +1,10 @@
+Using Python 3.10.22 environment at: /home/bobywoby/eecs553/.venv
+Resolved 2 packages in 148ms
+Downloading setuptools (1.2MiB)
+ Downloaded setuptools
+Prepared 2 packages in 574ms
+Uninstalled 1 package in 7ms
+Installed 2 packages in 29ms
+ - setuptools==84.2.1
+ + setuptools==65.5.0
+ + wheel==0.40.0

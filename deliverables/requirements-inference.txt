@@ -1,0 +1,9 @@
+# Install with Python 3.10. Paths relative to this file.
+-r ../diffusion-forcing/requirements.txt
+# wandb 0.17 imports moviepy.editor, removed in MoviePy 2.
+moviepy==1.0.3
+# Lightning 2.1 uses pkg_resources; preserve the original-era packaging API.
+setuptools==65.5.0
+wheel==0.40.0
+# Newer Diffusers uses torch.accelerator, absent in torch 2.4.
+diffusers==0.30.3

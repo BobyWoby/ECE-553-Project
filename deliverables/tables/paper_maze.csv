@@ -1,0 +1,3 @@
+environment,df_mean,df_reported_pm,diffuser_pd_mean,diffuser_pd_reported_pm,source,status
+medium,149.4,7.5,121.5,2.7,arXiv v4 Table 1,original paper only
+large,159.0,2.7,123.0,6.4,arXiv v4 Table 1,original paper only

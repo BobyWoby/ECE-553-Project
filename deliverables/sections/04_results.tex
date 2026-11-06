@@ -1,0 +1,47 @@
+\subsection{R1: long video rollout}
+The paper's Figure 3 compares video models, and Figures 8--9 illustrate Minecraft rollout beyond its recurrent training horizon. The source uses the same image file for Figures 8 and 9. We completed one-, two- and eight-times autoregressive runs, each containing eight videos with two context frames. The eight-times run generated 80-frame clips in 102.2 minutes, using a sampled peak of 14,343 MiB VRAM. The four-times horizon and the alternative schedule remain pending.
+
+Within the eight-times run, generated-transition LPIPS was $0.1339\pm0.0397$ over the first training horizon and $0.1366\pm0.0566$ over the last (standard deviations across video means); its fitted slope was $8.47\times10^{-5}$ per frame. MSE increased from $0.01450\pm0.00679$ to $0.01780\pm0.00963$. Ground-truth late-horizon means were 0.1382 LPIPS and 0.01415 MSE. Mean intensity across generated frames ranged from 0.3326 to 0.4128, and mean within-frame pixel standard deviation from 0.2516 to 0.2923. These aggregate statistics and the reviewed filmstrips show no gross saturation or complete freezing in this sample, although they do not rule out artifacts in individual videos. The result provides limited support for stable long rollout under the released checkpoint; it does not establish equivalence to the paper's model or baselines.
+
+The two-times run yielded late-horizon MSE $0.01044\pm0.00550$ and LPIPS $0.1248\pm0.0614$. The separate one-times run yielded MSE $0.01313\pm0.00648$ and LPIPS $0.1433\pm0.0543$. Dataset window enumeration changes with horizon, so the one- and eight-times batches are not paired. The within-run early/late comparison above avoids treating them as paired observations. All tensors were finite; eight-times predictions ranged from $-0.1861$ to $1.2999$ before clamping to $[0,1]$ for metrics.
+
+This experiment reproduces only DF's portion of the comparison: the released quickstart does not provide the teacher-forcing and causal full-sequence baselines. The attention checkpoint's sliding window and 110,000 steps recorded in its checkpoint (100,000 in the README) differ from the paper's RNN. Minecraft futures are stochastic; frame-to-frame change measures stability rather than predictive accuracy. A flat, nonzero curve near ground-truth change is consistent with no divergence, while a curve approaching zero can indicate freezing rather than stability. Evidence is limited to one sampling seed and eight videos.
+
+\begin{figure}[ht]
+\centering\includegraphics[width=\linewidth]{figures/r1_minecraft_compare.pdf}
+\caption{Top (original, Chen et al., Figures 8--9): Minecraft rollout from the paper's recurrent model, reproduced from the paper source. Middle and bottom (ours): released attention checkpoint at one and eight times its configured training horizon. Orange borders identify context frames. Architectures, rollout mechanisms and input clips differ.}
+\end{figure}
+\begin{figure}[ht]
+\centering\includegraphics[width=\linewidth]{figures/r1_temporal_metrics.pdf}
+\caption{Ours: eight-times autoregressive rollout, with matched ground-truth temporal-change reference. Lines average eight videos; shaded regions in the LPIPS and MSE panels are one standard deviation across videos, not confidence intervals. Dashed vertical lines mark ten-frame training-horizon boundaries. Pixel statistics use clamped $[0,1]$ values.}
+\end{figure}
+\subsection{R2: planning audit, experiments pending}
+The release explicitly changes the planning setting and omits MCG (called MCTG in the README). Exact Table 1 reproduction is therefore not available from the permitted \texttt{main} workflow. The asterisk on Diffuser denotes a hand-crafted PD controller that ignores generated actions, not merely a matched evaluation setting. Paper single-task means are shown next to explicitly missing released-code results.
+\begin{table}[ht]
+\centering
+\begin{tabular}{lrrlll}
+\toprule
+Maze & Paper DF & Paper Diffuser* & Ours reward & Ours stay & Ours reach\\
+\midrule
+Medium & 149.4 & 121.5 & TBD & TBD & TBD\\
+Large & 159.0 & 123.0 & TBD & TBD & TBD\\
+\bottomrule
+\end{tabular}
+\caption{Left numeric columns: original Table 1, Chen et al. Right three columns: our planned released-main evaluation, not yet run. Paper values are historical context, not directly comparable to raw released-code metrics. ``Stay'' denotes reward-if-stay and ``reach'' denotes first-reach steps.}
+\end{table}
+The code's \texttt{episode\_reward} is closest in construction to accumulated episode reward; \texttt{episode\_reward\_if\_stay} changes the trajectory outcome by crediting every step after first success. Neither can be compared numerically to paper scores without verifying normalization and evaluation protocol. The implementation increments \texttt{first\_reach} only while the goal has not yet been reached, excluding the successful step, and non-reaching episodes are censored at the evaluated duration. The analysis also records reached flags. MuJoCo 2.1.0 and D4RL now import successfully, and medium/large environments pass two-environment reset/step checks through the planner's vector interface. This verifies setup only; policy evaluation is queued after video sampling. Original planning Figures 14--15 are available in the source, but our corresponding plans are \textbf{[TBD]}.
+\subsection{R3: expanded theoretical result}
+\begin{table}[ht]
+\centering
+\begin{tabular}{p{0.44\linewidth}p{0.44\linewidth}}
+\toprule
+Original Appendix A (v4) & Our algebraic audit\\
+\midrule
+Claim 3 assigns positive KL to the expected log ratio $\mathbb E_q\log(p/q)$. & The identity is $-D_{\rm KL}(q\Vert p)$; the corrected lower bound subtracts denoising errors.\\
+Equation (A.13) counts uniform noise levels. & Explicit counting yields $1/(K+1)$ and $(j+1)/(K+1)$.\\
+Theorem A.3 uses $jP_t(j\mid k_{<t})$. & General weights are $\Pr(k_t<j\mid k_{<t})$; the forms coincide for uniform levels, but not generally.\\
+\bottomrule
+\end{tabular}
+\caption{Left: original paper statements, paraphrased from Appendix A. Right: our derivation and corrections. This analytical comparison is completed; it complements the experimental R1 result.}
+\end{table}
+\input{sections/r3_proof}

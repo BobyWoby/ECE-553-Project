@@ -1,0 +1,14 @@
+Collecting git+https://github.com/aravindr93/mjrl.git
+  Cloning https://github.com/aravindr93/mjrl.git to /tmp/pip-req-build-d2h8f5b5
+  Running command git clone --filter=blob:none --quiet https://github.com/aravindr93/mjrl.git /tmp/pip-req-build-d2h8f5b5
+  Resolved https://github.com/aravindr93/mjrl.git to commit 3871d93763d3b49c4741e6daeaebbc605fe140dc
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Building wheels for collected packages: mjrl
+  Building wheel for mjrl (setup.py): started
+  Building wheel for mjrl (setup.py): finished with status 'done'
+  Created wheel for mjrl: filename=mjrl-1.0.0-py3-none-any.whl size=61935 sha256=2872e4a7879db63d0276179527316f43ea67ab6a68c8e2575cf81a2fa19806c9
+  Stored in directory: /tmp/pip-ephem-wheel-cache-m1doo12m/wheels/e3/7c/92/181415410c7101d5ec9492afab9474d528cbac24774d084778
+Successfully built mjrl
+Installing collected packages: mjrl
+Successfully installed mjrl-1.0.0
