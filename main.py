@@ -9,6 +9,7 @@ Borrowed part of the code from David Charatan and wandb.
 """
 
 import sys
+import os
 import subprocess
 import time
 from pathlib import Path
@@ -92,6 +93,10 @@ def run_local(cfg: DictConfig):
 
     if checkpoint_path and is_rank_zero:
         print(f"Will load checkpoint from {checkpoint_path}")
+
+    # Reproducibility instrumentation: seed before constructing the experiment.
+    import lightning as L
+    L.seed_everything(int(os.environ.get("DF_SEED", 0)), workers=True)
 
     # launch experiment
     experiment = build_experiment(cfg, logger, checkpoint_path)

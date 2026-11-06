@@ -1,3 +1,6 @@
+import os
+import json
+from pathlib import Path
 from typing import Optional, Any
 from omegaconf import DictConfig
 import numpy as np
@@ -36,6 +39,15 @@ class DiffusionForcingPlanning(DiffusionForcingBase):
         self.padding_mode = cfg.padding_mode
         super().__init__(cfg)
         self.plot_end_points = cfg.plot_start_goal and self.guidance_scale != 0
+
+    def log_image(self, key, image, *args, **kwargs):
+        dump_dir = os.environ.get("DF_DUMP_DIR")
+        if dump_dir:
+            path = Path(dump_dir) / (key.replace("/", "_") + ".png")
+            path.parent.mkdir(parents=True, exist_ok=True)
+            # All three planner call sites pass a PIL image.
+            image.save(path)
+        return super().log_image(key, image, *args, **kwargs)
 
     def _build_model(self):
         mean = list(self.observation_mean) + list(self.action_mean)
@@ -341,6 +353,20 @@ class DiffusionForcingPlanning(DiffusionForcingBase):
         self.log(f"{namespace}/episode_reward", episode_reward.mean())
         self.log(f"{namespace}/episode_reward_if_stay", episode_reward_if_stay.mean())
         self.log(f"{namespace}/first_reach", first_reach.mean())
+        dump_dir = os.environ.get("DF_DUMP_DIR")
+        if dump_dir:
+            Path(dump_dir).mkdir(parents=True, exist_ok=True)
+            values = {"episode_reward": episode_reward,
+                      "episode_reward_if_stay": episode_reward_if_stay,
+                      "first_reach": first_reach}
+            payload = {key: value.tolist() for key, value in values.items()}
+            payload["means"] = {key: float(value.mean()) for key, value in values.items()}
+            payload["reached"] = reached.tolist()
+            payload["seed"] = int(os.environ.get("DF_SEED", 0))
+            payload["environment_seed"] = 0
+            with open(Path(dump_dir) / "maze_metrics.json", "w") as handle:
+                json.dump(payload, handle, indent=2)
+
 
         # Visualization
         samples = min(16, batch_size)

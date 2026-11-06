@@ -1,3 +1,4 @@
+import os
 from omegaconf import DictConfig
 import torch
 from lightning.pytorch.utilities.types import STEP_OUTPUT
@@ -39,6 +40,14 @@ class DiffusionForcingVideo(DiffusionForcingBase):
             )
         return output_dict
 
+    def validation_step(self, batch, batch_idx):
+        # Preserve the dataset's validity mask; do not infer padding from black pixels.
+        if os.environ.get("DF_DUMP_DIR"):
+            if not hasattr(self, "_dump_valid"):
+                self._dump_valid = []
+            self._dump_valid.append(torch.as_tensor(batch[-1]).T.bool().cpu())
+        return super().validation_step(batch, batch_idx)
+
     def on_validation_epoch_end(self, namespace="validation") -> None:
         if not self.validation_step_outputs:
             return
@@ -49,6 +58,15 @@ class DiffusionForcingVideo(DiffusionForcingBase):
             xs.append(gt)
         xs_pred = torch.cat(xs_pred, 1)
         xs = torch.cat(xs, 1)
+
+        dump_dir = os.environ.get("DF_DUMP_DIR")
+        if dump_dir:
+            os.makedirs(dump_dir, exist_ok=True)
+            torch.save({"pred": xs_pred.float().cpu(), "gt": xs.float().cpu(),
+                        "context_frames": self.context_frames,
+                        "valid": torch.cat(self._dump_valid, 1)},
+                       os.path.join(dump_dir, f"{namespace}_samples.pt"))
+            self._dump_valid.clear()
 
         if self.logger:
             log_video(
