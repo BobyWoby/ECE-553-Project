@@ -40,13 +40,13 @@ class DiffusionForcingVideo(DiffusionForcingBase):
             )
         return output_dict
 
-    def validation_step(self, batch, batch_idx):
+    def validation_step(self, batch, batch_idx, namespace="validation"):
         # Preserve the dataset's validity mask; do not infer padding from black pixels.
         if os.environ.get("DF_DUMP_DIR"):
             if not hasattr(self, "_dump_valid"):
                 self._dump_valid = []
             self._dump_valid.append(torch.as_tensor(batch[-1]).T.bool().cpu())
-        return super().validation_step(batch, batch_idx)
+        return super().validation_step(batch, batch_idx, namespace=namespace)
 
     def on_validation_epoch_end(self, namespace="validation") -> None:
         if not self.validation_step_outputs:
